@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  target: MyString
+  title: MyString
+  publisher: MyString
+  address: MyString
+  year: 1
+  url: MyString
+  access: 2022-05-16 13:37:53
+  location: MyString
+  insideof: MyString
+  pages: MyString
+  note: MyString
+
+two:
+  target: MyString
+  title: MyString
+  publisher: MyString
+  address: MyString
+  year: 1
+  url: MyString
+  access: 2022-05-16 13:37:53
+  location: MyString
+  insideof: MyString
+  pages: MyString
+  note: MyString

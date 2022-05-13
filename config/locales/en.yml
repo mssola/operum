@@ -1,0 +1,7 @@
+en:
+  languages:
+    en: "english"
+    ca: "catalan"
+
+  errors:
+    internal: "Internal error"

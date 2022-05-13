@@ -1,0 +1,97 @@
+#+STARTUP:showall
+
+* Contributing
+
+** Setting things up
+
+In order to run this application you need to have a proper Ruby installation
+(check the required version on the =.ruby-version= file), and you also need to
+install =bundler=. You can achieve this with the following command:
+
+#+BEGIN_SRC bash
+$ gem install bundler
+#+END_SRC
+
+After this, you are ready to install all the Ruby dependencies with:
+
+#+BEGIN_SRC bash
+$ bundle
+#+END_SRC
+
+**TODO**
+Now it's time to set up the Javascript dependencies. You can do this by
+installing [[https://yarnpkg.com/][yarn]]. After doing that, just run it to have it download all the
+dependencies:
+
+#+BEGIN_SRC bash
+$ yarn
+#+END_SRC
+
+Since this is a [[https://rubyonrails.org/][Ruby on Rails]] application, you need to perform the usual steps
+to bootstrap this application:
+
+#+BEGIN_SRC bash
+$ bundle exec rake db:create
+$ bundle exec rake db:migrate
+$ bundle exec rake db:seed
+#+END_SRC
+
+**TODO**
+After this, you can just run the following command to have it running:
+
+#+BEGIN_SRC bash
+$ bundle exec rails s
+#+END_SRC
+
+Note that this will setup the application in development mode. For deploying
+this on production take a look at [[sec:deployment][this section]].
+
+** Running tests
+
+*** Testing
+
+In order to run the full test suite you can just run:
+
+#+BEGIN_SRC bash
+$ RAILS_ENV=test bundle exec bin/rails test test/*
+#+END_SRC
+
+If you only want to run a single test file, you can do:
+
+#+BEGIN_SRC bash
+RAILS_ENV=test bundle exec bin/rails test TEST=<path-to-the-test-file>
+#+END_SRC
+
+And you can further filter this to a specific test with:
+
+#+BEGIN_SRC bash
+RAILS_ENV=test bundle exec bin/rails test TEST=<path-to-the-test-file> TESTOPTS="--name=<test-name>"
+#+END_SRC
+
+Moreover, style is important. Make sure to respect this by running the following command:
+
+#+BEGIN_SRC bash
+$ bundle exec rubocop
+#+END_SRC
+
+** Issue reporting
+
+I'm using Github in order to host the code. Thus, in order to report issues you
+can do it on its [[https://github.com/mssola/operum/issues][issue tracker]]. A couple of notes on reports:
+
+- Check that the issue has not already been reported or fixed in the =main= branch.
+- Try to be concise and precise in your description of the problem.
+- Provide a step by step guide on how to reproduce this problem.
+- Provide the version you are using (git commit SHA).
+
+** Pull requests
+
+- Write a [[https://chris.beams.io/posts/git-commit/][good commit message]].
+- Run the tests.
+- Update the [[./CHANGELOG.org][changelog]] (if relevant).
+- Open a pull request with *only* one subject and a clear title and description. Refrain from submitting pull requests with tons of different unrelated commits.
+
+** Deployment
+   <<sec:deployment>>
+
+To do.

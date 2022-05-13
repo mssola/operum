@@ -1,0 +1,16 @@
+---
+
+one:
+  full_name: "John Smithie Smith"
+
+two:
+  full_name: "John _Smithie Smith_"
+
+three:
+  full_name: "_John Smithie Smith_"
+
+four:
+  full_name: "_John Smithie_ Smith"
+
+five:
+  full_name: "John"

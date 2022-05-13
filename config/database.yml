@@ -1,0 +1,41 @@
+# The `default` block is highly configurable through environment variables. The
+# environment variables are named after the keys (i.e. "OPERUM_DB_#{key
+# uppercase}"). There are two gotchas for this:
+#
+#   1. The adapter is configurable, but you'd need to patch the Gemfile as well
+#      if you want to have `mysql2` or whatever adapter you feel like.
+#   2. The password can be given as an environment variable, or you can point to
+#      a file with the `OPERUM_DB_PASSWORD_FILE` environment variable. This is
+#      interesting with environments where secrets are mounted afterwards
+#      (i.e. Kubernetes).
+#
+# With this, you get that all environments can safely inherit the `default`
+# block, and just change the name of the database. Thus, all environments are
+# the same, but the `database` key, by default, is "operum_#{name of environment
+# downcase}" (although it can also be tweaked with the "OPERUM_DB_DATABASE"
+# environment variable).
+
+default: &default
+  adapter: <%= ENV.fetch("OPERUM_DB_ADAPTER") { 'postgresql' } %>
+
+  host:     <%= ENV.fetch('OPERUM_DB_HOST') { 'localhost' } %>
+  username: <%= ENV.fetch('OPERUM_DB_USERNAME') { ENV.fetch('USER') { 'root' } } %>
+  password: <%= ENV['OPERUM_DB_PASSWORD_FILE'].present? ? File.read(ENV.fetch('OPERUM_DB_PASSWORD_FILE') { '' }).strip : ENV.fetch('OPERUM_DB_PASSWORD') { '' } %>
+
+  encoding: utf8
+
+  pool:    <%= ENV.fetch("OPERUM_DB_MAX_THREADS") { 5 } %>
+  timeout: <%= ENV.fetch("OPERUM_DB_TIMEOUT") { 5000 } %>
+
+  <% if ENV['OPERUM_DB_PORT'] %>
+  port: <%= ENV['OPERUM_DB_PORT'] %>
+  <% end %>
+  <% if ENV['OPERUM_DB_SOCKET'] %>
+  socket: <%= ENV['OPERUM_DB_SOCKET'] %>
+  <% end %>
+
+<% %w[development test production staging].each do |env| %>
+<%= env %>:
+  <<: *default
+  database: <%= ENV["OPERUM_DB_DATABASE"] || "operum_#{env}" %>
+<% end %>
