@@ -1,7 +1,7 @@
 // Supported languages. Note that I'm only writing 'en' instead of the myriad of
 // combinations. This is because 'en' is the default language, so if it's not
 // found in `setCurrentLanguage` then it will be applied anyways.
-const SUPPORTED = ["ca", "en"];
+const SUPPORTED: Array<string> = ["ca", "en"];
 
 // Language for the application.
 let currentLanguage = "en";
@@ -27,8 +27,8 @@ const getLanguage = () => {
 // fetch an element by an ID with an agreed format. Make sure that it exists. If
 // it's not found, then they key is simply returned, which is ugly, but at least
 // it's something to show...
-const t = (key) => {
-  let val = document.getElementById(`msg.${currentLanguage}.${key}`);
+const t = (key: string) => {
+  const val = document.getElementById(`msg.${currentLanguage}.${key}`);
   return val ? val.textContent : key;
 };
 
