@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  skip_before_action :authenticate_request, only: [:create]
+  skip_before_action :authenticate_request, only: [:create, :can]
+  before_action :ensure_can_create!, only: [:create]
 
   # TODO: disable this endpoint entirely if the admin of the site decides not to
   # allow user creation.
@@ -21,7 +22,27 @@ class UsersController < ApplicationController
     @user.destroy
   end
 
+  def can
+    render json: { can: can_create? }, status: :ok
+  end
+
   protected
+
+  def ensure_can_create!
+    return if can_create?
+
+    render json: { errors: 'you are not allowed to create users' }, status: :forbidden
+  end
+
+  def can_create?
+    opt = APP_CONFIG['users']['create']
+
+    if opt == 'first'
+      User.none?
+    else
+      opt == 'always'
+    end
+  end
 
   def user_params
     params.permit(:username, :password)

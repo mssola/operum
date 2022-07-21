@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :users, only: %i[create destroy]
+  resources :users, only: %i[create destroy] do
+    get 'can', on: :collection
+  end
+
   post '/auth/login', to: 'authentication#login'
 
   resources :things

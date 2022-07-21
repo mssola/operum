@@ -1,0 +1,8 @@
+---
+
+users:
+  # Options:
+  #   - first (default): only the first user can be created from the UI.
+  #   - none: no user can be created from the UI.
+  #   - always: people can always create users from the UI.
+  create: first
