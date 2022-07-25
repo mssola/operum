@@ -13,9 +13,11 @@
 
         <input
           id="username"
-          class="rounded border border-gray-400 w-full"
+          class="rounded border border-gray-400 w-full px-2 py-1"
           type="text"
           autocomplete="off"
+          autofocus="autofocus"
+          @keyup.enter="doAction"
           v-model="username"
         />
       </div>
@@ -30,8 +32,9 @@
 
         <input
           id="password"
-          class="rounded border border-gray-400 w-full"
+          class="rounded border border-gray-400 w-full px-2 py-1"
           type="password"
+          @keyup.enter="doAction"
           v-model="password"
         />
       </div>
@@ -39,7 +42,7 @@
       <div class="field">
         <button
           id="create"
-          class="font-semibold py-2 px-4 rounded cursor-pointer bg-green-500 text-white border border-green-700 hover:bg-green-700 w-full mt-2 mb-2"
+          class="btn btn-new w-full mt-2 mb-2"
           :disabled="isDisabled"
           @click="doAction"
         >
@@ -52,12 +55,19 @@
 
 <script>
 import i18n from "../utils/i18n";
+import axios from "axios";
+import { tokenStore } from "../stores/token.ts";
 
 export default {
   name: "NamePassword",
 
   props: {
     action: String,
+  },
+
+  setup() {
+    const store = tokenStore();
+    return { store };
   },
 
   data() {
@@ -84,7 +94,51 @@ export default {
 
   methods: {
     doAction() {
-      console.log("HER!");
+      if (this.isDisabled) {
+        return;
+      }
+      this.action === "login" ? this.doLogin() : this.doSignup();
+    },
+
+    doLogin() {
+      axios({
+        method: "POST",
+        url: "/auth/login",
+        data: { username: this.username, password: this.password },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((resp) => {
+          this.store.token = resp.data.token;
+          this.$router.push("/");
+        })
+        .catch((e) => {
+          // TODO: flash
+          if (e.response.status === 401) {
+            console.log("bad");
+          } else {
+            console.log("error");
+          }
+        });
+    },
+
+    doSignup() {
+      axios({
+        method: "POST",
+        url: "/users",
+        data: { username: this.username, password: this.password },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((_) => {
+          this.doLogin();
+        })
+        .catch((_) => {
+          // TODO: flash
+          return;
+        });
     },
   },
 };

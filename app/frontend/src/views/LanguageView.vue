@@ -216,6 +216,10 @@
     <span v-if="i18n.getLanguage() === 'en'" id="msg.en.login">Login</span>
     <span v-else id="msg.ca.login">Entra</span>
 
+    <!-- logout -->
+    <span v-if="i18n.getLanguage() === 'en'" id="msg.en.logout">Logout</span>
+    <span v-else id="msg.ca.logout">Surt</span>
+
     <!-- newuser -->
     <span v-if="i18n.getLanguage() === 'en'" id="msg.en.newuser">New user</span>
     <span v-else id="msg.ca.newuser">Nou usuari</span>

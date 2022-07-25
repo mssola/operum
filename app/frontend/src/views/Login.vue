@@ -1,15 +1,15 @@
 <template>
-  <div class="about">
-    <h1>This is the login page</h1>
-  </div>
+  <NamePassword action="login"></NamePassword>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
+<script lang="ts">
+import NamePassword from "../components/NamePassword.vue";
+
+export default {
+  name: "LoginView",
+
+  components: {
+    NamePassword,
+  },
+};
+</script>

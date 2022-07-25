@@ -1,5 +1,5 @@
 <template>
-  <NamePassword :action="user"></NamePassword>
+  <NamePassword action="user"></NamePassword>
 </template>
 
 <script lang="ts">

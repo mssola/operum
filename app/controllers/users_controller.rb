@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  skip_before_action :authenticate_request, only: [:create, :can]
+  skip_before_action :authenticate_request, only: %i[create can]
   before_action :ensure_can_create!, only: [:create]
 
   # TODO: disable this endpoint entirely if the admin of the site decides not to
