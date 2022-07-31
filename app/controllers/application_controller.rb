@@ -15,9 +15,13 @@ class ApplicationController < ActionController::API
   def authenticate_request
     header = request.headers['Authorization']
     header = header.split.last if header
-    decoded = jwt_decode(header)
 
+    decoded = jwt_decode(header)
     @current_user = User.find(decoded['user_id'])
+
+    ap @current_user
+  rescue JWT::DecodeError, ActiveRecord::NotFound
+    render json: { errors: 'could not authenticate request' }, status: :unauthorized
   end
 
   # Set the locale for the final response.

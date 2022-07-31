@@ -17,20 +17,22 @@ class Thing < ApplicationRecord
   enum :kind, %i[other poetry theater essay shorts]
 
   def authors
-    Person.find(thing_people.where(role: ThingPerson.roles[:author]).ids)
+    Person.find(thing_people.where(role: ThingPerson.roles[:author]).pluck(:person_id))
   end
 
   def translators
-    Person.find(thing_people.where(role: ThingPerson.roles[:translator]).ids)
+    Person.find(thing_people.where(role: ThingPerson.roles[:translator]).pluck(:person_id))
   end
 
   def add_people!(authors:, translators:)
     authors.each do |author|
-      ThingPerson.create!(thing: self, person: Person.find(author))
+      person = Person.find_or_create_by!(full_name: author)
+      ThingPerson.create!(thing: self, person:, role: ThingPerson.roles['author'])
     end
 
     translators.each do |author|
-      ThingPerson.create!(thing: self, person: Person.find(author))
+      person = Person.find_or_create_by!(full_name: author)
+      ThingPerson.create!(thing: self, person:, role: ThingPerson.roles['translator'])
     end
   end
 

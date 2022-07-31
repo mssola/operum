@@ -13,8 +13,8 @@ class ThingsController < ApplicationController
   def create
     pars = thing_params
 
-    transaction do
-      @thing = Thing.new(pars)
+    ActiveRecord::Base.transaction do
+      @thing = Thing.new(pars.except('authors', 'translators', 'languages'))
       @thing.save!
 
       @thing = @thing.reload
@@ -29,8 +29,8 @@ class ThingsController < ApplicationController
   def update
     pars = thing_params
 
-    transaction do
-      @thing.update!(pars.except('languages'))
+    ActiveRecord::Base.transaction do
+      @thing.update!(pars.except('authors', 'translators', 'languages'))
       @thing.languages = pars['languages']
       @thing.update_people!(authors: pars['authors'], translators: pars['translators'])
     end
@@ -49,15 +49,16 @@ class ThingsController < ApplicationController
   end
 
   def thing_params
-    # TODO: watch out for array parameters!
-    params.permit(
-      :target, :title, :publisher, :address, :year, :url, :access, :location,
-      :insideof, :pages, :note, :rate, :status, :kind, :bought_at,
-      :tags, :annotations,
-      authors: [], translators: [], languages: []
-    ).tap do |obj|
+    params
+      .permit(:target, :title, :publisher, :address, :year, :url, :access, :location,
+              :insideof, :pages, :note, :rate, :status, :kind, :bought_at,
+              :tags, :annotations, authors: [], translators: []
+             ).tap do |obj|
+      obj['translators'] = [] if obj['translators'].blank?
       obj['languages'] = Language.by_code!(obj['languages'])
       obj['user_id'] = @current_user.id
+
+      obj.require([:target, :title, :authors])
     end
   end
 end

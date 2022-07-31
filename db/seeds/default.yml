@@ -1,0 +1,17 @@
+---
+
+# TODO: bought_at
+# TODO: translators
+# TODO: editors
+
+- target: Alegre2017
+  title: El lugar de los poetas
+  location: Casa
+  authors:
+    - Luis Alegre
+  kind: essay
+  languages:
+    - es
+  publisher: Akal
+  status: read
+  rate: 7

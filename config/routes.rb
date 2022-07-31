@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   post '/auth/login', to: 'authentication#login'
 
+  resources :people
   resources :things
   resources :groups do
     resources :things, except: %i[show], controller: 'group_things'

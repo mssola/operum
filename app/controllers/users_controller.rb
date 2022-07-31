@@ -45,6 +45,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(:username, :password)
+    ps = %i[username password]
+
+    params.permit(*ps).tap { |p| p.require(ps) }
   end
 end

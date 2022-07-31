@@ -3,6 +3,8 @@
 class Person < ApplicationRecord
   validates :full_name, presence: true, uniqueness: true
 
+  has_many :thing_people, dependent: :destroy
+
   REFERENCE_FORMAT = /(.+)?_(.+)_/
 
   # Returns the full name without formatting characters.
