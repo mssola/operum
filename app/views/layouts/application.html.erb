@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= ENV.fetch('OPERUM_BASE_TITLE', 'Operum') %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <% if current_user && @searches %>
+      <header data-controller="header">
+        <nav>
+          <a class="<%= 'current' if current_user.last_search_id.nil? %>" href="/"><%= I18n.t('searches.home') %></a>
+          <% Search.find_each do |s| %>
+            <a class="<%= 'current' if current_user.last_search_id == s.id %>" href="<%= search_path(s) %>"><%= s.name %></a>
+          <% end %>
+          <a id="toggle-hidden-global-menu" href="#" data-action="header#toggle"><i id="header-chevron" class="gg-chevron-down"></i></a>
+        </nav>
+
+        <div id="hidden-nav" class="hidden">
+          <div class="flex-wrap">
+            <span><%= I18n.t('general.create').capitalize %>: </span>
+            <%= link_to I18n.t('searches.object'), new_search_path %>
+            <%= link_to I18n.t('things.object'), new_thing_path %>
+          </div>
+
+          <div class="flex-wrap">
+            <span><%= I18n.t('searches.title') %>: </span>
+            <% if @search&.id %>
+              <%= link_to I18n.t('general.edit'), edit_search_path(@search) %>
+              <%= link_to I18n.t('general.delete'), search_path(@search), data: { turbo_confirm: I18n.t('general.sure'), turbo_method: :delete } %>
+            <% end %>
+
+            <%= link_to I18n.t('searches.export.action'), new_search_exports_path(current_user.last_search_id ? current_user.last_search_id : '0') %>
+          </div>
+
+          <div class="flex-wrap">
+            <span><%= I18n.t('general.list').capitalize %>: </span>
+            <%= link_to I18n.t('tags.title').downcase, tags_path %>
+            <%= link_to I18n.t('searches.shared.title').downcase, shared_searches_path %>
+          </div>
+        </div>
+      </header>
+    <% end %>
+
+    <main>
+      <% if flash[:notice] %>
+        <div class="notice">
+          <span><%= flash[:notice] %>.</span>
+        </div>
+      <% end %>
+
+      <% if flash[:alert] %>
+        <div class="notice">
+          <span><%= flash[:alert] %>.</span>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </main>
+
+    <footer>
+      <p>
+        <%= I18n.t('layout.created-by') %> <a href="http://jo.mssola.com/">Miquel Sabaté Solà</a>
+        <br>
+        <%= I18n.t('layout.this-page-license') %> <a href="/license">AGPLv3</a> (<a href="https://github.com/mssola/operum"><%= I18n.t('layout.source-code') %></a>)
+        <% if current_user %>
+          <br>
+          <%= link_to I18n.t('sessions.sign-out'), sessions_path, data: { turbo_method: :delete } %>
+        <% end %>
+      </p>
+    </footer>
+  </body>
+</html>

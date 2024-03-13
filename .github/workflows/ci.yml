@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Run linting
+        run: |
+          bundle exec rubocop --parallel
+
+      - name: Run security checks
+        run: |
+          bundle exec bundler-audit --update
+          bundle exec brakeman -q -w2
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Setup database
+        env:
+          RAILS_ENV: "test"
+        run: |
+          bin/rails db:setup
+
+      - name: Check autoloading (zeitwerk)
+        env:
+          RAILS_ENV: "test"
+        run: |
+          bin/rails zeitwerk:check
+
+      - name: Run tests
+        env:
+          RAILS_ENV: "test"
+        run: |
+          bin/rails test
+          bin/rails test:system

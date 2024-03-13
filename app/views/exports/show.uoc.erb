@@ -1,0 +1,7 @@
+\chapter{<%= I18n.t('searches.export.chapter') %>}
+
+{\setlength{\parskip}{-0.3cm}
+
+<%= UocExporter.new(things: @results.order(:authors)).export %>
+
+}

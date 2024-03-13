@@ -1,0 +1,7 @@
+<%= render "things/thing", thing: @thing %>
+
+<p>
+  <%= link_to I18n.t('things.create-another'), new_thing_path %>
+</p>
+
+<%= render "comments/list", thing: @thing, from: 'things/show' %>

@@ -1,0 +1,9 @@
+<div class="center-contents">
+    <div></div>
+    <div id="tag-new">
+        <h2><%= I18n.t('tags.new') %> <span>&#8212; <%= link_to I18n.t('general.back-to-list'), tags_path %></span></h2>
+
+        <%= render "form", tag: @tag %>
+    </div>
+    <div></div>
+</div>

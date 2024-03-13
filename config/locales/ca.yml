@@ -1,0 +1,129 @@
+ca:
+  ##
+  # Rails thingies.
+
+  activerecord:
+    models:
+      comment: Comentari
+      tag: Etiqueta
+      thing: Font
+    attributes:
+      comment:
+        content: Contingut
+      tag:
+        name: Nom
+      thing:
+        target: Identificador
+        title: Títol
+        publisher: Editorial
+        address: Adreça
+        year: Any
+        url: Enllaç
+        access: Última data de consulta
+        location: Lloc
+        insideof: Dins de
+        pages: Pàgines
+        rate: Qualificació
+        status: Estat
+        kind: Tipus
+        note: Notes
+        authors: Autors
+        editors: Editors d'una col·lecció
+        bought_at: Data de compra
+        where_is_it: Per on para?
+      user:
+        username: Nom d'usuari
+        password: Contrasenya
+
+  helpers:
+    submit:
+      create: Afegeix
+      update: Actualitza
+
+  ##
+  # App-specific strings.
+
+  general:
+    sure: N'estàs segur?
+    edit: edita
+    delete: elimina
+    new: nou
+    create: Afegeix
+    list: llista
+    in: a
+    back-to-list: torna a la llista
+    or: o
+    cancel: cancel·la
+    insideof: Dins de
+    insideof-vowel: Dins d'
+
+  comments:
+    title: Comentari
+    title-plural: Comentaris
+    new: Comenta
+    none: De moment no sha fet cap comentari
+    edit-title: Edita comnetari
+    delete-title: Esborra comentari
+    bad-create: "No s'ha pogut afegir el comentari per motius desconeguts"
+    bad-update: "No s'ha pogut actualitzar el comentari per motius desconeguts"
+
+  layout:
+    created-by: Creat per
+    this-page-license: Aquesta pàgina és programari lliure i està sota la llicència
+    source-code: codi font
+
+  license:
+    title: Llicència
+    at: El codi font es pot trobar
+    here: aquí
+
+  sessions:
+    title: Benvingut!
+    wrong-credentials: Usuari o contrasenya incorrectes
+    sign-in: Entra
+    sign-out: Tanca la sessió
+
+  searches:
+    title: Cerca
+    object: cerca
+    home: Tot
+    save: guarda cerca
+    public: Públic
+
+    shared:
+      title: Cerques públiques
+      none: De moment no s'ha compartit cap cerca
+
+    export:
+      action: exporta
+      note: ATENCIÓ
+      note-msg: només s'inclourà informació que pugui ser utilitzada per a escriure una secció de bibliografia
+      chapter: Bibliografia
+
+  tags:
+    title: Etiquetes
+    new: Etiqueta nova
+    new-action: nova
+    create-success: Etiqueta creada correctament
+    destroy-success: Etiqueta esborrada correctament
+
+  things:
+    object: font
+    create-another: Afegeix-ne una altra
+    create-success: Nova font creada correctament
+    update-success: Font actualitzada correctament
+    destroy-success: Font esborrada correctament
+
+    status:
+      read: Llegit
+      notread: Per llegir
+      tobepublished: Per publicar
+
+    kind:
+      other: Altre
+      poetry: Poesia
+      theater: Teatre
+      essay: Assaig
+      shorts: Narració breu
+      novel: Novel·la
+      paper: Article

@@ -1,0 +1,27 @@
+/*
+ * Single comment.
+ */
+
+.comment {
+    margin: 1rem .5rem 1rem .5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--standard-border-radius);
+    padding: .5rem 1rem;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.comment .comment-header {
+    display: flex;
+    gap: 10px;
+}
+
+.comment .comment-header .comment-header-title {
+    flex-grow: 1;
+}
+
+.comment .comment-header .comment-header-actions {
+    flex-grow: 0;
+}

@@ -1,0 +1,24 @@
+.width-100 {
+    width: 100%;
+}
+
+.center-contents {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.flex-list {
+    display: flex;
+    align-items: start;
+    gap: 10px 20px;
+}
+
+.flex-wrap {
+    display: flex;
+    align-items: start;
+    flex-wrap: wrap;
+}
+
+.hidden {
+    display: none !important;
+}

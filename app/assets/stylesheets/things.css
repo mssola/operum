@@ -1,0 +1,94 @@
+/*
+ * Thing form.
+ */
+
+#thing_form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+@media only screen and (max-width: 720px) {
+    #thing_form {
+        grid-template-columns: 1fr;
+    }
+
+    #thing-delete-button {
+        width: 100%;
+    }
+}
+
+#thing_form input[type=text], input[type=number], input[type=date], select {
+    width: 100%;
+}
+
+#thing_form .thing_large {
+    grid-column: 1 / -1;
+}
+
+h5 a {
+    font-size: 1rem;
+}
+
+/*
+ * Listing things.
+ */
+
+.thing_row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.thing_head {
+    flex-grow: 0;
+}
+
+.thing_body {
+    flex-grow: 1;
+}
+
+.thing_body a {
+    text-decoration: none;
+    color: var(--text) !important;
+}
+
+.thing_body a:hover {
+    color: var(--accent) !important;
+}
+
+.thing_tail {
+    flex-grow: 0;
+}
+
+.dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.dot_other {
+    background-color: black;
+}
+
+.dot_poetry {
+    background-color: #facc15;
+}
+
+.dot_theater {
+    background-color: #c084fc;
+}
+
+.dot_essay {
+    background-color: #ef4444;
+}
+
+.dot_shorts {
+    background-color: #a3e635;
+}
+
+.dot_novel {
+    background-color: #60a5fa;
+}

@@ -1,0 +1,75 @@
+/*
+ * Root
+ */
+
+#hidden-nav {
+    padding: 1rem .5rem 2rem .5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+#hidden-nav div:not(:last-child) {
+    padding-right: 1rem;
+    border-right: 1px solid var(--border);
+}
+
+#hidden-nav a {
+    margin-left: .5rem;
+}
+
+/*
+ * New search.
+ */
+
+#search_form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+}
+
+#search_form input[type=text] {
+    width: 100%;
+}
+
+/*
+ * Export.
+ */
+
+@media only screen and (max-width: 720px) {
+    #export-format-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/*
+ * Shared searches.
+ */
+
+#public-search-table {
+    margin: 0px;
+    width: 100%;
+}
+
+#public-search-table td {
+    padding: 0px;
+    border: 0px;
+}
+
+#public-search-table details {
+    background: 0;
+    margin: 0px;
+    border-radius: 0px;
+}
+
+#public-search-table .details-flex {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}

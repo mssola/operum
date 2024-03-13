@@ -1,0 +1,21 @@
+<div class="center-contents">
+  <div></div>
+  <div>
+    <h2><%= I18n.t('sessions.title') %></h2>
+
+    <%= form_tag sessions_path do |form| %>
+      <div class='field'>
+        <%= label_tag :username, I18n.t('activerecord.attributes.user.username') %>
+        <%= text_field_tag :username, '', autofocus: true, class: 'width-100' %>
+      </div>
+      <div class='field'>
+        <%= label_tag :password, I18n.t('activerecord.attributes.user.password') %>
+        <%= password_field_tag :password, '', class: 'width-100' %>
+      </div>
+      <div class='actions'>
+        <%= submit_tag I18n.t('sessions.sign-in') %>
+      </div>
+    <% end %>
+  </div>
+  <div></div>
+</div>

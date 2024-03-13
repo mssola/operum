@@ -1,0 +1,13 @@
+<div class="center-contents">
+  <div></div>
+  <div id="tag-index">
+    <h2><%= I18n.t('tags.title') %> <span>&#8212; <%= link_to I18n.t('tags.new-action'), new_tag_path %></span></h2>
+
+    <div id="tags-list">
+      <% @tags.each do |tag| %>
+        <%= render tag %>
+      <% end %>
+    </div>
+  </div>
+  <div></div>
+</div>

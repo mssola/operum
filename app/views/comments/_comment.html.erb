@@ -1,0 +1,42 @@
+<div id="<%= dom_id(comment) %>" class="comment">
+    <div class="comment-header">
+        <div class="comment-header-title">
+            <% if defined?(idx) %>
+                <span title="Commented on <%= comment.created_at %>"><b><%= I18n.t('comments.title') %></b> #<%= idx + 1 %></span>
+            <% else %>
+                <span title="Commented on <%= comment.created_at %>"><b><%= I18n.t('comments.title') %></b> <%= I18n.t('general.in') %> <%= link_to comment.thing.title, thing_path(comment.thing) %></span>
+            <% end %>
+        </div>
+
+        <div class="comment-header-actions">
+            <% if defined?(from) %>
+                <a title="<%= I18n.t('comments.edit-title') %>" href="#" class="edit-comment" data-action="comment#toggle"><%= I18n.t('general.edit').capitalize %></a>
+                <%= link_to I18n.t('general.delete').capitalize, thing_comment_path(comment.thing, comment, from: from), data: { "turbo-method": :delete }, title: I18n.t('comments.delete-title'), class: 'delete-comment' %>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="comment-body">
+        <%= comment.content %>
+    </div>
+
+    <% if comment.tag_references.any? %>
+        <div class="comment-footer">
+            <small><b><%= I18n.t('tags.title') %></b>: <%= comment.tags.order(:name).pluck(:name).join(", ") %></small>
+        </div>
+    <% end %>
+
+    <% if defined?(from) %>
+        <div class="comment-edit-body hidden">
+            <%= form_with model: [comment.thing, comment] do |form| %>
+                <%= form.hidden_field :from, value: from %>
+                <%= form.rich_text_area :content, autofocus: true %>
+
+                <%= render "tags/taggable", tag_references: comment.tag_references.pluck(:tag_id), form: form %>
+
+                <%= form.submit %>
+                <span><%= I18n.t('general.or') %> <a title="Cancel editing of comment" href="#" data-action="comment#toggle"><%= I18n.t('general.cancel') %></a></span>
+            <% end %>
+        </div>
+    <% end %>
+</div>

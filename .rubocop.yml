@@ -1,0 +1,106 @@
+AllCops:
+  TargetRubyVersion: 3.2
+  TargetRailsVersion: 7.1
+
+  DisplayCopNames: true
+  DisplayStyleGuide: false
+  SuggestExtensions: false
+
+  NewCops: enable
+
+  Exclude:
+    # Files that are out of our control and that are not excluded in the
+    # default config of rubocop.
+    - bin/bundle
+    - db/schema.rb
+    - db/migrate/*
+    - db/seeds.rb
+    - vendor/**/*
+
+##
+# Plugins
+
+require:
+  - rubocop-rails
+  - rubocop-performance
+
+#
+# Layout
+#
+
+# The table format is more human readable.
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+
+# The default is just too small. A limit of 100 looks reasonable.
+Layout/LineLength:
+  Max: 100
+
+#
+# Metrics
+#
+
+# The default is just too small.
+Metrics/AbcSize:
+  Max: 30
+
+# We will skip it for tests.
+Metrics/ClassLength:
+  Max: 200
+  Exclude:
+    - test/**/*
+
+# Default is just too low.
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+# Default is just too low.
+Metrics/PerceivedComplexity:
+  Max: 10
+
+# We will skip it for Rake tasks.
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+    - lib/tasks/**/*
+    - test/**/*
+
+# The default is just too small.
+Metrics/MethodLength:
+  Max: 20
+
+#
+# Style
+#
+
+# It's not needed to add documentation for obvious modules or classes. The main
+# idea is that documentation will be asked during the review process if needed.
+Style/Documentation:
+  Enabled: false
+
+# This forces us to create a new object for no real reason.
+Style/MultipleComparison:
+  Enabled: false
+
+# There are some false positives (e.g. "module ::Module", in which we want to
+# make sure there are no clashes or misunderstandings). Therefore, we just
+# disable this cop.
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# I do need to write non-ASCII words from time to time since, you know, this is
+# a language application and latin words can have macrons.
+Style/AsciiComments:
+  Enabled: false
+
+#
+# Naming
+#
+
+# The default minimum length is 3, which is too long for good names like
+# "js". Variables with only one letter are usually disallowed, but there are
+# some names which are easy to understand (e.g. convention).
+Naming/MethodParameterName:
+  MinNameLength: 2
+  AllowedNames: [_, n]

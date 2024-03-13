@@ -1,0 +1,29 @@
+<div data-controller="search">
+  <%= form_with(model: search) do |form| %>
+    <%= render "layouts/errors", model: search %>
+
+    <div id="search_form">
+      <div id="search-form-name" class="hidden">
+        <%= form.label :name %>
+        <%= form.text_field :name, required: true, autocomplete: 'off' %>
+      </div>
+
+      <div>
+        <%= form.text_field :body, "data-action": "keydown.enter->search#load", "data-search-target": "body", placeholder: 'Search body' %>
+        <a id="save-search" href="#" data-action="search#save" class="hidden"><%= I18n.t('searches.save') %></a>
+      </div>
+
+      <div id="search-form-shared" class="hidden">
+        <%= form.check_box :shared %>
+        <%= form.label :shared, I18n.t('searches.public') %>
+      </div>
+
+      <div id="search-form-submit" class="hidden">
+        <%= form.submit %>
+      </div>
+    </div>
+  <% end %>
+
+  <div id="results">
+  </div>
+</div>

@@ -1,0 +1,27 @@
+#tag-index h2 span {
+    font-size: 1rem;
+    vertical-align: middle;
+}
+
+#tag-new h2 span {
+    font-size: 1rem;
+    vertical-align: middle;
+}
+
+#tags-list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.tag-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.tag-container .name {
+    flex-grow: 1;
+}
+
+.tag-container .action {
+    flex-grow: 0;
+}

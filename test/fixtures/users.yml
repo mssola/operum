@@ -1,0 +1,4 @@
+user:
+  username: user
+  password_digest: <%= BCrypt::Password.create("12341234", cost: 4) %>
+  last_search_id: null

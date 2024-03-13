@@ -1,0 +1,131 @@
+en:
+  ##
+  # Rails thingies.
+
+  activerecord:
+    models:
+      comment: Comment
+      tag: Tag
+      thing: Source
+    attributes:
+      comment:
+        content: Content
+      tag:
+        name: Name
+      thing:
+        target: Identifier
+        title: Title
+        publisher: Publisher
+        address: Address
+        year: Year
+        url: URL
+        access: Last consulted at
+        location: Place
+        insideof: Inside of
+        pages: Pages
+        rate: Rate
+        status: Status
+        kind: Kind
+        note: Notes
+        authors: Authors
+        editors: Editors of a collection
+        bought_at: Bought at
+        where_is_it: Where is it?
+      user:
+        username: Username
+        password: Password
+
+  helpers:
+    submit:
+      create: Create
+      update: Update
+
+  ##
+  # App-specific strings.
+
+  general:
+    sure: Are you sure?
+    edit: edit
+    delete: delete
+    new: new
+    create: create
+    list: list
+    in: in
+    back-to-list: back to list
+    or: or
+    cancel: cancel
+    insideof: Inside of
+    insideof-vowel: Inside of
+
+  comments:
+    title: Comment
+    title-plural: Comments
+    new: New comment
+    none: 'No comments have been made so far'
+    edit-title: Edit comment
+    delete-title: Delete comment
+    bad-create: Could not add comment for unknown reasons
+    bad-update: Could not update comment for unknown reasons
+
+  layout:
+    created-by: Created by
+    this-page-license: This site is free software and is under the
+    source-code: source code
+
+  license:
+    title: License
+    at: You can find the source code
+    here: here
+
+  sessions:
+    title: Welcome!
+    wrong-credentials: Wrong credentials
+    sign-in: Sign in
+    sign-out: Sign out
+
+  searches:
+    title: Search
+    object: search
+    home: Home
+    save: save search
+    public: Public
+
+    shared:
+      title: Public searches
+      none: 'No searches have been shared for now'
+
+    export:
+      action: export
+      note: 'NOTE'
+      note-msg: only information that can be used for building up a bibliography section will be included
+      chapter: Bibliography
+
+  tags:
+    title: Tags
+    new: New tag
+    new-action: new
+
+    create-success: Tag was successfully created
+    destroy-success: Tag was successfully deleted
+
+  things:
+    object: source
+    create-another: Create another one
+
+    create-success: New source was successfully created
+    update-success: Source was successfully updated
+    destroy-success: Source was successfully deleted
+
+    status:
+      read: Read
+      notread: Not read
+      tobepublished: To be published
+
+    kind:
+      other: Other
+      poetry: Poetry
+      theater: Theater
+      essay: Essay
+      shorts: Shorts
+      novel: Novel
+      paper: Paper

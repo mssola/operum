@@ -1,0 +1,13 @@
+<% if model.errors.size.positive? %>
+    <div class="notice">
+        <% if model.errors.size == 1 %>
+            <span><%= model.errors.first.full_message %>.</span>
+        <% else %>
+            <ul>
+                <% model.errors.each do |error| %>
+                    <li><%= error.full_message %>.</li>
+                <% end %>
+            </ul>
+        <% end %>
+    </div>
+<% end %>

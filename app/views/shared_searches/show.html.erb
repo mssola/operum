@@ -1,0 +1,28 @@
+<table id="public-search-table">
+    <% @search.results.values.flatten.each do |res| %>
+        <tr>
+            <td>
+                <details>
+                    <% if res.is_a? Thing %>
+                        <summary><%= res.title %></summary>
+                        <div class="details-flex">
+                            <div><span><b>Authors</b>: <%= authors_or_editors(res) %></span></div>
+                            <div><span><b>Publisher</b>: <%= string_maybe(res.publisher) %></span></div>
+                            <div><span><b>Year</b>: <%= string_maybe(res.year) %></span></div>
+                            <div><span><b>Kind</b>: <%= res.kind %></span></div>
+                            <div><span><b>Note</b>: <%= string_maybe(res.note) %></span></div>
+                            <% unless res.url.blank? %>
+                                <div><span><b>URL</b>: <a href="<%= res.url %>" target="_blank"><%= res.url %></a></span></div>
+                            <% end %>
+                        </div>
+                    <% else %>
+                        <summary><b><%= I18n.t('comments.title') %></b> <%= I18n.t('general.in') %> «<i><%= res.thing.title %></i>»</summary>
+                        <div class="details-flex">
+                            <%= res.content %>
+                        </div>
+                    <% end %>
+                </details>
+            </td>
+        </tr>
+    <% end %>
+</table>

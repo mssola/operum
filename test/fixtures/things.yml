@@ -1,0 +1,39 @@
+thing1:
+  target: 'target1'
+  title: 'This is a title 1'
+  publisher: 'Publisher 1'
+  authors: 'Miquel Sabaté, John Smith, Nom cognom1 cognom2, Nom _cognom3 cognom4_'
+  editors: false
+  address:
+  year: 2024
+  url: 'http://example.com'
+  location: 'Somewhere'
+  insideof: 'Some other thing'
+  pages: '22-24'
+  note: 'This is a note 1'
+  rate: 5
+  status: <%= Thing.statuses[:read] %>
+  kind: <%= Thing.kinds[:novel] %>
+  access: 2024-02-24 17:24:12
+  bought_at: 2024-02-24 17:24:12
+  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
+
+thing2:
+  target: 'target2'
+  title: 'This is a 2'
+  publisher: 'Publisher 2'
+  authors: 'Miquel Sabaté, Nom'
+  editors: true
+  address: 'Address 2'
+  year: 2024
+  url: 'http://example.com'
+  location: 'Somewhere'
+  insideof: 'Some other thing'
+  pages: '22-24'
+  note: 'This is a note 2'
+  rate: 8
+  status: <%= Thing.statuses[:read] %>
+  kind: <%= Thing.kinds[:poetry] %>
+  access: 2024-02-24 17:24:12
+  bought_at: 2024-02-24 17:24:12
+  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>

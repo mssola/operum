@@ -1,0 +1,102 @@
+<%= form_with(model: thing) do |form| %>
+  <%= render "layouts/errors", model: thing %>
+
+  <div id="thing_form">
+    <div class="thing_large">
+      <%= form.label :title %>
+      <%= form.text_field :title, autofocus: true, required: true %>
+    </div>
+
+    <div class="thing_large">
+      <%= form.label :authors %>
+      <%= form.text_field :authors, required: true %>
+      <%= form.check_box :editors %>
+      <%= form.label :editors %>
+    </div>
+
+    <div class="thing_large">
+      <%= form.label :note %>
+      <%= form.text_field :note %>
+    </div>
+
+    <div>
+      <%= form.label :target %>
+      <%= form.text_field :target, required: true %>
+    </div>
+
+    <div>
+      <%= form.label :publisher %>
+      <%= form.text_field :publisher %>
+    </div>
+
+    <div>
+      <%= form.label :year %>
+      <%= form.number_field :year %>
+    </div>
+
+    <div>
+      <%= form.label :address %>
+      <%= form.text_field :address %>
+    </div>
+
+    <div>
+      <%= form.label :url %>
+      <%= form.text_field :url %>
+    </div>
+
+    <div>
+      <%= form.label :access %>
+      <%= form.date_field :access %>
+    </div>
+
+    <div>
+      <%= form.label :location %>
+      <%= form.text_field :location %>
+    </div>
+
+    <div>
+      <%= form.label :insideof %>
+      <%= form.text_field :insideof %>
+    </div>
+
+    <div>
+      <%= form.label :pages %>
+      <%= form.text_field :pages %>
+    </div>
+
+    <div>
+      <%= form.label :rate %>
+      <%= form.number_field :rate, min: 0, max: 10, required: true %>
+    </div>
+
+    <div>
+      <%= form.label :status %>
+      <%= form.select :status, options_for_select(Thing.statuses.map { |k, _| [I18n.t("things.status.#{k}"), k] }.sort, thing.status) %>
+    </div>
+
+    <div>
+      <%= form.label :kind %>
+      <%= form.select :kind, options_for_select(Thing.kinds.map { |k, _| [I18n.t("things.kind.#{k}"), k] }.sort, thing.kind) %>
+    </div>
+
+    <div>
+      <%= form.label :bought_at %>
+      <%= form.date_field :bought_at %>
+    </div>
+
+    <div>
+      <%= form.label :where_is_it %>
+      <%= form.text_field :where_is_it %>
+    </div>
+ </div>
+
+ <%= render "tags/taggable", tag_references: thing.tag_references.pluck(:tag_id), form: form %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<% if thing.id %>
+  <%= button_to I18n.t('general.delete').capitalize, thing, id: 'thing-delete-button', form: { data: { turbo_confirm: I18n.t('general.sure') } }, method: :delete %>
+<% end %>

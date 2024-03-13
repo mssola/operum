@@ -1,0 +1,4 @@
+search1:
+  name: 'search1'
+  body: "tag:\"tag1\""
+  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>

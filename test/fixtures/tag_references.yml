@@ -1,0 +1,15 @@
+thing1tag1:
+  tag_id: <%= ActiveRecord::FixtureSet.identify(:tag1) %>
+  taggable: thing1 (Thing)
+
+thing1tag2:
+  tag_id: <%= ActiveRecord::FixtureSet.identify(:tag2) %>
+  taggable: thing1 (Thing)
+
+thing2tag1:
+  tag_id: <%= ActiveRecord::FixtureSet.identify(:tag1) %>
+  taggable: thing2 (Thing)
+
+comment1tag1:
+  tag_id: <%= ActiveRecord::FixtureSet.identify(:tag1) %>
+  taggable: comment1 (Comment)

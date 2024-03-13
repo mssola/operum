@@ -1,0 +1,30 @@
+<div id="comment-list" data-controller="comment">
+    <h5><%= I18n.t('comments.title-plural') %></h5>
+
+    <div>
+        <% if thing.comments.any? %>
+            <% thing.comments.each_with_index do |comment, idx| %>
+                <%= render comment, from: from, idx: idx %>
+            <% end %>
+        <% else %>
+            <p><%= I18n.t('comments.none') %>.</p>
+        <% end %>
+    </div>
+
+    <div id="comment-new-section">
+        <a id="comment-new-button" class="button" href="#" data-action="comment#toggleNewComment"><%= I18n.t('comments.new') %></a>
+
+        <div id="comment-new-body" class="hidden">
+            <%= form_with model: [thing, Comment.new] do |form| %>
+                <%= form.rich_text_area :content, size: "20x5", autofocus: true %>
+
+                <%= form.hidden_field :from, value: from %>
+
+                <%= render "tags/taggable", tag_references: [], form: form %>
+
+                <%= form.submit %>
+                <span><%= I18n.t('general.or') %> <a title="<%= I18n.t('general.cancel') %>" href="#" data-action="comment#toggleNewComment"><%= I18n.t('general.cancel') %></a></span>
+            <% end %>
+        </div>
+    </div>
+</div>

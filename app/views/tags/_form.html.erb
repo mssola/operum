@@ -1,0 +1,12 @@
+<%= form_with(model: tag) do |form| %>
+  <%= render "layouts/errors", model: tag %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name, autofocus: true, autocomplete: 'off', class: 'width-100' %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
