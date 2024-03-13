@@ -54,3 +54,35 @@ jobs:
         run: |
           bin/rails test
           bin/rails test:system
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+    if: github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build production Docker image
+        run: |
+          docker build --tag ${{ secrets.REGISTRY_HOST }}/${{ secrets.REGISTRY_USERNAME }}/operum:main .
+
+      - name: Push Docker image
+        run: |
+          # The login is done with the default docker password storage, which is
+          # not the safest around, but it will be removed by a subsequent logout
+          # later on.
+          docker login -u "${{ secrets.REGISTRY_USERNAME }}" -p "${{ secrets.REGISTRY_PASSWORD }}" ${{ secrets.REGISTRY_HOST }}
+          docker push ${{ secrets.REGISTRY_HOST }}/${{ secrets.REGISTRY_USERNAME }}/operum:main
+          docker logout ${{ secrets.REGISTRY_HOST }}
+
+      # The server provides a small script named `service-restart` which will do
+      # the right thing to pull the new image of the desired service and re-run
+      # it.
+      - name: Restart service with the new code
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: infra-restart operum
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USERNAME }}
+          passphrase: ${{ secrets.REMOTE_PASSPHRASE }}
+          privateKey: ${{ secrets.PRIVATE_KEY}}

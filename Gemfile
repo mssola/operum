@@ -16,7 +16,6 @@ gem 'sqlite3', '~> 1.4'
 
 # Web server.
 gem 'puma', '>= 5.0'
-gem 'thruster'
 
 # Use JavaScript with ESM import maps.
 gem 'importmap-rails'

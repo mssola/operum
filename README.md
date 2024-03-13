@@ -9,14 +9,20 @@
 >
 > &mdash; P. Ovidi Nasonis - Fasti 3.833-834
 
-This is a small application in order to keep track of books, articles, papers,
-etc.; that you might have and need to know where they are, reference it on a
-paper, etc. To sum things up, it's a way to keep your bibliography under
-control.
+This is a simple application that keeps track of all your sources (i.e. books,
+papers, articles). With this information at hand you can:
 
-## Basic usage
+- Add comments and notes to any source to keep track of what you found more
+  relevant from it.
+- Tag sources and comments in the way you wish.
+- Save searches that match on a user-defined tag, or a certain string from any
+  of your comments.
+- Export searches into CSV or TeX so it can be used for building up bibliography
+  sections on a paper you might be working on.
 
-To do.
+The *workflow* revolves around the idea of being able to tag sources and
+comments with tags that you might want to define, and then being able to list
+sources with searches based on these tags.
 
 ## Deployment
 
