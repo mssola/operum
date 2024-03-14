@@ -14,22 +14,51 @@ papers, articles). With this information at hand you can:
 
 - Add comments and notes to any source to keep track of what you found more
   relevant from it.
-- Tag sources and comments in the way you wish.
+- Tag sources and comments in whatever way you wish.
 - Save searches that match on a user-defined tag, or a certain string from any
-  of your comments.
+  of your sources or comments.
 - Export searches into CSV or TeX so it can be used for building up bibliography
   sections on a paper you might be working on.
 
-The *workflow* revolves around the idea of being able to tag sources and
-comments with tags that you might want to define, and then being able to list
-sources with searches based on these tags.
+## Workflow
+
+The workflow revolves around the idea of being able to track sources and
+comments with tags that you have defined, and then being able to list sources
+with searches based on these tags. This way, you might want to add tags about
+project names, topics, language, etc.; and then attach these tags into the
+sources and comments that you have added into the application. Afterwards, you
+can save searches and they will be shown on top of the application. With this,
+you can switch between different ways in which you have groupped your sources.
+This groups come in handy to further filter on your sources, or to export these
+sources into a TeX file that can be used for the paper you might be working on.
 
 ## Deployment
 
-To do.
+The recommended way to deploy this application is through a Docker container.
+Take a look at the provided `Dockerfile` file, which is more than enough to get
+this done. After building the image, remember that:
 
-OPERUM_BASE_TITLE
-OPERUM_DEFAULT_LOCALE
+1. You need to provide a `RAILS_MASTER_KEY`, just like any other Rails application.
+2. You need to create a Docker volume for the `/rails/storage` path. This path
+   will contain the SQLite3 database, and so you need this to persist across
+   deployments.
+
+Oh, yeah, we are using SQLite3 in production, no biggie! For the use case of
+this application SQLite3 is actually just fine and it allows us to keep things
+simple.
+
+Other than that, there are some *optional* environment variables that you might
+want to touch:
+
+- `OPERUM_BASE_TITLE`: the title that is going to be shown for the application.
+  By default this is set to be just `Operum`.
+- `OPERUM_DEFAULT_LOCALE`: that's right, this application supports multiple
+  languages! For now these languages are Catalan and English (but other
+  languages are also welcomed, just hit me with a
+  [PR](https://github.com/mssola/operum/pulls) and take a look at the files
+  under `config/locales`), and if you set this environment variable you need to
+  provide the code (i.e. `en` for english and `ca` for catalan). By default this
+  application uses catalan.
 
 ## Contributing
 
