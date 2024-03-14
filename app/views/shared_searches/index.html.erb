@@ -1,13 +1,19 @@
-<h3><%= I18n.t('searches.shared.title') %></h3>
+<div class="center-contents">
+    <div></div>
+    <div>
+        <h3><%= I18n.t('searches.shared.title') %></h3>
 
-<% if @searches.empty? %>
-    <div><span><%= I18n.t('searches.shared.none') %>.</span></div>
-<% else %>
-    <div id="shared-searches-list">
-        <% @searches.each do |s| %>
-            <div>
-                <%= link_to s.name, search_shared_path(s) %>
+        <% if @searches.empty? %>
+            <div><span><%= I18n.t('searches.shared.none') %>.</span></div>
+        <% else %>
+            <div id="shared-searches-list">
+                <% @searches.each do |s| %>
+                    <div>
+                        <%= link_to s.name, search_shared_path(s) %>
+                    </div>
+                <% end %>
             </div>
         <% end %>
     </div>
-<% end %>
+    <div></div>
+</div>

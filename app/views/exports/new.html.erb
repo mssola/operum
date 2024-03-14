@@ -1,14 +1,20 @@
-<div class="notice"><b><%= I18n.t('searches.export.note') %></b>: <%= I18n.t('searches.export.note-msg') %>.</div>
+<div class="center-contents">
+    <div></div>
+    <div>
+        <div class="notice"><b><%= I18n.t('searches.export.note') %></b>: <%= I18n.t('searches.export.note-msg') %>.</div>
 
-<div data-controller="export">
-    <div id="errors"></div>
+        <div data-controller="export">
+            <div id="errors"></div>
 
-    <input type="hidden" data-export-target="id" value="<%= @search.id %>" />
+            <input type="hidden" data-export-target="id" value="<%= @search.id %>" />
 
-    <select id="export-select-format" data-action="export#change">
-        <option selected="selected" value="csv">CSV</option>
-        <option value="uoc">UOC</option>
-    </select>
+            <select id="export-select-format" data-action="export#change">
+                <option selected="selected" value="csv">CSV</option>
+                <option value="uoc">UOC</option>
+            </select>
 
-    <a id="export-format-button" class="button" href="#"><%= I18n.t('searches.export.action').capitalize %></a>
+            <a id="export-format-button" class="button" href="#"><%= I18n.t('searches.export.action').capitalize %></a>
+        </div>
+    </div>
+    <div></div>
 </div>

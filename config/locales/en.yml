@@ -105,6 +105,7 @@ en:
     title: Tags
     new: New tag
     new-action: new
+    none: You have not created any tags. You can do so by clicking
 
     create-success: Tag was successfully created
     destroy-success: Tag was successfully deleted

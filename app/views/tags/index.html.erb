@@ -1,13 +1,17 @@
 <div class="center-contents">
   <div></div>
   <div id="tag-index">
-    <h2><%= I18n.t('tags.title') %> <span>&#8212; <%= link_to I18n.t('tags.new-action'), new_tag_path %></span></h2>
+    <h3><%= I18n.t('tags.title') %><% if @tags.any? %><span>&#8212; <%= link_to I18n.t('tags.new-action'), new_tag_path %></span><% end %></h3>
 
-    <div id="tags-list">
-      <% @tags.each do |tag| %>
-        <%= render tag %>
-      <% end %>
-    </div>
+    <% if @tags.any? %>
+      <div id="tags-list">
+        <% @tags.each do |tag| %>
+          <%= render tag %>
+        <% end %>
+      </div>
+    <% else %>
+      <div><span><%= I18n.t('tags.none') %> <%= link_to I18n.t('license.here'), new_tag_path %>.</span></div>
+    <% end %>
   </div>
   <div></div>
 </div>

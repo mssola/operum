@@ -105,6 +105,8 @@ ca:
     title: Etiquetes
     new: Etiqueta nova
     new-action: nova
+    none: Encara no hi ha cap etiqueta. Pots crear-ne una fent click
+
     create-success: Etiqueta creada correctament
     destroy-success: Etiqueta esborrada correctament
 
