@@ -65,7 +65,7 @@ ca:
     title: Comentari
     title-plural: Comentaris
     new: Comenta
-    none: De moment no sha fet cap comentari
+    none: De moment no s'ha fet cap comentari
     edit-title: Edita comnetari
     delete-title: Esborra comentari
     bad-create: "No s'ha pogut afegir el comentari per motius desconeguts"
