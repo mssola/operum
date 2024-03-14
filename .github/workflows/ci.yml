@@ -78,11 +78,12 @@ jobs:
       # The server provides a small script named `service-restart` which will do
       # the right thing to pull the new image of the desired service and re-run
       # it.
-      - name: Restart service with the new code
-        uses: garygrossgarten/github-action-ssh@release
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          command: infra-restart operum
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USERNAME }}
+          password: ${{ secrets.REMOTE_PASSPHRASE }}
+          key: ${{ secrets.PRIVATE_KEY }}
           passphrase: ${{ secrets.REMOTE_PASSPHRASE }}
-          privateKey: ${{ secrets.PRIVATE_KEY}}
+          script: infra-restart operum

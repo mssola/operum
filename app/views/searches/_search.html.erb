@@ -1,5 +1,14 @@
 <div id="items">
-  <% items.values.flatten.each do |item| %>
-    <%= render item %>
+  <% els = items.values.flatten %>
+  <% if els.empty? %>
+    <% if current_user.last_search_id.nil? %>
+      <p><%= I18n.t('things.none') %> <%= link_to I18n.t('license.here'), new_thing_path %>.</p>
+    <% else %>
+      <p><%= I18n.t('searches.none') %>.</p>
+    <% end %>
+  <% else %>
+    <% els.each do |item| %>
+      <%= render item %>
+    <% end %>
   <% end %>
 </div>

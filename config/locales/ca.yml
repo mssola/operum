@@ -89,6 +89,7 @@ ca:
     home: Tot
     save: guarda cerca
     public: Públic
+    none: 'No hi ha cap resultat per a aquesta cerca'
 
     shared:
       title: Cerques públiques
@@ -109,10 +110,12 @@ ca:
 
   things:
     object: font
+    destroy-success: Font esborrada correctament
+    none: Encara no hi ha cap font. Pots crear-ne una fent click
+
     create-another: Afegeix-ne una altra
     create-success: Nova font creada correctament
     update-success: Font actualitzada correctament
-    destroy-success: Font esborrada correctament
 
     status:
       read: Llegit

@@ -89,6 +89,7 @@ en:
     home: Home
     save: save search
     public: Public
+    none: There are no items for this search
 
     shared:
       title: Public searches
@@ -111,6 +112,7 @@ en:
   things:
     object: source
     create-another: Create another one
+    none: There are no sources yet. You can add a new one by clicking
 
     create-success: New source was successfully created
     update-success: Source was successfully updated
