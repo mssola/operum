@@ -7,6 +7,12 @@
     grid-template-columns: repeat(3, 1fr);
 }
 
+@media only screen and (max-width: 720px) {
+    .center-contents {
+        grid-template-columns: 1fr;
+    }
+}
+
 .flex-list {
     display: flex;
     align-items: start;
