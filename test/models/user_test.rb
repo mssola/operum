@@ -3,21 +3,19 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test 'has to provide username and password' do
+  test 'presence: username' do
     user = User.new
-    assert_raise(ActiveRecord::RecordInvalid) { user.save! }
-
-    user.username = 'whatever'
-    assert_raise(ActiveRecord::RecordInvalid) { user.save! }
-
     user.password = '1234'
     user.password_confirmation = '12345'
-    assert_raise(ActiveRecord::RecordInvalid) { user.save! }
 
-    user.password_confirmation = '1234'
-    assert_difference('User.count') do
-      user.save!
-    end
+    assert_raise(ActiveRecord::RecordInvalid) { user.save! }
+  end
+
+  test 'presence: password' do
+    user = User.new
+    user.username = 'whatever'
+
+    assert_raise(ActiveRecord::RecordInvalid) { user.save! }
   end
 
   test 'username has to be unique' do

@@ -23,6 +23,7 @@ AllCops:
 require:
   - rubocop-rails
   - rubocop-performance
+  - rubocop-minitest
 
 #
 # Layout
@@ -104,3 +105,10 @@ Style/AsciiComments:
 Naming/MethodParameterName:
   MinNameLength: 2
   AllowedNames: [_, n]
+
+#
+# Minitest
+#
+
+Minitest/MultipleAssertions:
+  Max: 5

@@ -8,17 +8,17 @@ class ExportsControllerTest < ActionDispatch::IntegrationTest
     get search_exports_url(0, format: 'csv')
 
     body = @response.body.split("\n")
-    assert body.size == 2
-    assert body.first.split(',')[0] == things(:thing2).target
-    assert body.last.split(',')[0] == things(:thing1).target
+    targets = body.map { |b| b.split(',').first }
 
-    assert @response.media_type == 'text/csv'
+    assert_equal targets, [things(:thing2).target, things(:thing1).target]
+
+    assert_equal 'text/csv', @response.media_type
   end
 
   test 'uoc: works' do
     get search_exports_url(0, format: 'uoc')
 
-    assert @response.body == file_fixture('all.uoc.tex').read
-    assert @response.media_type == 'application/x-tex'
+    assert_equal @response.body, file_fixture('all.uoc.tex').read
+    assert_equal 'application/x-tex', @response.media_type
   end
 end

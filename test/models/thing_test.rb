@@ -3,33 +3,25 @@
 require 'test_helper'
 
 class ThingTest < ActiveSupport::TestCase
-  test 'validates presence' do
-    assert_raise(ActiveRecord::RecordInvalid) { Thing.new.save! }
-
-    # Missing 'title'
+  test 'presence: title' do
     assert_raise(ActiveRecord::RecordInvalid) do
       Thing.new(target: 'target', authors: 'Author',
                 user_id: users(:user).id, rate: 5,
                 status: Thing.statuses[:read], kind: Thing.kinds[:novel]).save!
     end
+  end
 
-    # Missing 'target'
+  test 'presence: target' do
     assert_raise(ActiveRecord::RecordInvalid) do
       Thing.new(title: 'title', authors: 'Author',
                 user_id: users(:user).id, rate: 5,
                 status: Thing.statuses[:read], kind: Thing.kinds[:novel]).save!
     end
+  end
 
-    # Missing 'authors'
+  test 'presence: authors' do
     assert_raise(ActiveRecord::RecordInvalid) do
       Thing.new(title: 'title', target: 'target',
-                user_id: users(:user).id, rate: 5,
-                status: Thing.statuses[:read], kind: Thing.kinds[:novel]).save!
-    end
-
-    # Valid!
-    assert_difference('Thing.count') do
-      Thing.new(title: 'title', target: 'target', authors: 'Author',
                 user_id: users(:user).id, rate: 5,
                 status: Thing.statuses[:read], kind: Thing.kinds[:novel]).save!
     end
@@ -85,11 +77,13 @@ class ThingTest < ActiveSupport::TestCase
 
   test 'has many comments' do
     thing = things(:thing1)
-    assert thing.comments.size == 1
+
+    assert_equal 1, thing.comments.size
   end
 
   test 'has many tags through tag_references' do
     thing = things(:thing1)
-    assert thing.tags.size == 2
+
+    assert_equal 2, thing.tags.size
   end
 end

@@ -19,6 +19,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   # Sign out the current user if it's already signed in, otherwise do nothing.
   def sign_out_maybe!
     click_on I18n.t('sessions.sign-out')
+
     assert_text I18n.t('sessions.title')
   rescue Capybara::ElementNotFound
     # We were not logged in, do nothing.

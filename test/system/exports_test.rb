@@ -9,11 +9,13 @@ class ExportsTest < ApplicationSystemTestCase
 
   test 'can access exports from the hidden menu' do
     find('#toggle-hidden-global-menu').click
+
     assert_text I18n.t('searches.export.action')
 
     click_on I18n.t('searches.export.action')
+
     assert_text I18n.t('searches.export.note-msg')
-    assert page.current_path == new_search_exports_path(0)
+    assert_equal page.current_path, new_search_exports_path(0)
   end
 
   test 'can export using multiple formats' do
@@ -22,6 +24,7 @@ class ExportsTest < ApplicationSystemTestCase
     assert find('#export-format-button')[:href].ends_with?('/searches/0/exports.csv')
 
     find('#export-select-format').select('UOC')
+
     assert find('#export-format-button')[:href].ends_with?('/searches/0/exports.uoc')
   end
 end

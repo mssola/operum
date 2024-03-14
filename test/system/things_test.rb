@@ -7,12 +7,14 @@ class ThingsTest < ApplicationSystemTestCase
 
   test 'the hidden menu has a things#new link' do
     find('#toggle-hidden-global-menu').click
+
     assert_text I18n.t('things.object').downcase
 
     click_on I18n.t('things.object').downcase
+
     assert_text I18n.t('activerecord.attributes.thing.title')
 
-    assert page.current_path == new_thing_path
+    assert_equal page.current_path, new_thing_path
   end
 
   test 'you can click on a thing listed on the search to go to the its #show page' do
@@ -20,7 +22,7 @@ class ThingsTest < ApplicationSystemTestCase
 
     assert_text I18n.t('activerecord.attributes.thing.title')
 
-    assert page.current_path == edit_thing_path(things(:thing1))
+    assert_equal page.current_path, edit_thing_path(things(:thing1))
   end
 
   test 'you can create a new thing' do
@@ -38,13 +40,17 @@ class ThingsTest < ApplicationSystemTestCase
 
     # Ensure that tag references are properly created.
     tags = Thing.find_by(title: 'new title').tags
-    assert tags.size == 1
-    assert tags.first.name == tags(:tag1).name
 
-    # You can go back to create another thing with a convenient link.
+    assert_equal tags.map(&:name), [tags(:tag1).name]
+  end
+
+  test 'you have a link to go back at creating a thing' do
+    visit thing_url(things(:thing1))
+
     click_on I18n.t('things.create-another')
+
     assert_text I18n.t('activerecord.attributes.thing.title')
-    assert page.current_path == new_thing_path
+    assert_equal page.current_path, new_thing_path
   end
 
   test 'you get feedback from wrong values for a new thing' do
@@ -67,7 +73,7 @@ class ThingsTest < ApplicationSystemTestCase
 
     # Originally :thing1 has references to :tag1 and :tag2. This test will
     # remove the reference to :tag1.
-    assert things(:thing1).tag_references.size == 2
+    assert_equal 2, things(:thing1).tag_references.size
 
     fill_in I18n.t('activerecord.attributes.thing.title'), with: 'another thing entirely'
     find("#thing_tag_ids_#{tags(:tag1).id}").click
@@ -77,8 +83,8 @@ class ThingsTest < ApplicationSystemTestCase
 
     # Tag references updated: only one reference (:tag2).
     tags = things(:thing1).reload.tags
-    assert tags.size == 1
-    assert tags.first.id = tags(:tag2).id
+
+    assert_equal tags.map(&:id), [tags(:tag2).id]
   end
 
   test 'you get feedback from wrong values for a thing' do
@@ -96,6 +102,7 @@ class ThingsTest < ApplicationSystemTestCase
 
     assert_difference 'Thing.count', -1 do
       accept_alert { click_on I18n.t('general.delete').capitalize, match: :first }
+
       assert_text I18n.t('things.destroy-success')
     end
   end

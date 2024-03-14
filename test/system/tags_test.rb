@@ -17,6 +17,7 @@ class SharedSearchesTest < ApplicationSystemTestCase
     fill_in I18n.t('activerecord.attributes.tag.name'), with: 'whatever'
     assert_difference 'Tag.count' do
       click_on I18n.t('helpers.submit.create')
+
       assert_text 'whatever'
     end
   end
@@ -26,6 +27,7 @@ class SharedSearchesTest < ApplicationSystemTestCase
 
     fill_in I18n.t('activerecord.attributes.tag.name'), with: tags(:tag1).name
     click_on I18n.t('helpers.submit.create')
+
     assert_text "#{I18n.t('activerecord.attributes.tag.name')} #{I18n.t('errors.messages.taken')}"
   end
 
@@ -34,6 +36,7 @@ class SharedSearchesTest < ApplicationSystemTestCase
 
     assert_difference 'Tag.count', -1 do
       click_link(I18n.t('general.delete'), match: :first)
+
       assert_text I18n.t('tags.title')
     end
   end

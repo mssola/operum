@@ -21,11 +21,13 @@ class SearchesTest < ApplicationSystemTestCase
 
   test 'the hidden menu should allow us to go into the searches#new url' do
     find('#toggle-hidden-global-menu').click
+
     assert_text I18n.t('searches.title')
 
     click_on I18n.t('searches.object')
+
     assert find('#search_body')
-    assert page.current_path == new_search_path
+    assert_equal page.current_path, new_search_path
   end
 
   test 'can perform a new search' do
@@ -56,22 +58,25 @@ class SearchesTest < ApplicationSystemTestCase
     # Hit the save button so the hidden form appears.
     assert_text I18n.t('searches.save')
     find('#save-search').click
+
     assert_text I18n.t('searches.public')
 
     fill_in 'Name', with: 'Nova cerca'
     click_on I18n.t('helpers.submit.create')
 
     assert_text 'Nova cerca'
-    assert page.current_path == search_path(Search.find_by(name: 'Nova cerca'))
+    assert_equal page.current_path, search_path(Search.find_by(name: 'Nova cerca'))
   end
 
   test 'can edit a search that is not the Home' do
     # Home cannot be edited.
     find('#toggle-hidden-global-menu').click
+
     assert_selector 'a', text: I18n.t('general.edit'), count: 0
 
     # Select search1
     click_on searches(:search1).name
+
     assert_selector 'a', text: things(:thing1).title, count: 2
     find('#toggle-hidden-global-menu').click
 
@@ -81,7 +86,7 @@ class SearchesTest < ApplicationSystemTestCase
 
     # If you click on it, you will be on the edit page for it.
     assert find('#search_body')
-    assert page.current_path == edit_search_path(searches(:search1))
+    assert_equal page.current_path, edit_search_path(searches(:search1))
   end
 
   test 'edit an existing search works' do
@@ -92,6 +97,7 @@ class SearchesTest < ApplicationSystemTestCase
     # Hit the save button so the hidden form appears.
     assert_text I18n.t('searches.save')
     find('#save-search').click
+
     assert_text I18n.t('searches.public')
 
     # Update the name.
@@ -101,23 +107,26 @@ class SearchesTest < ApplicationSystemTestCase
     # We have been redirected to search#show, and the name has been refreshed.
     assert_selector 'a', text: searches(:search1).name, count: 0
     assert_text 'Nova cerca'
-    assert page.current_path == search_path(searches(:search1))
+    assert_equal page.current_path, search_path(searches(:search1))
   end
 
   test 'can delete a search that is not the Home' do
     # Home cannot be deleted.
     find('#toggle-hidden-global-menu').click
+
     assert_selector 'a', text: I18n.t('general.delete'), count: 0
 
     # Select search1
     click_on searches(:search1).name
+
     assert_selector 'a', text: things(:thing1).title, count: 2
     find('#toggle-hidden-global-menu').click
 
     # It can be deleted!
     assert_text I18n.t('general.delete')
     accept_alert { click_on I18n.t('general.delete') }
+
     assert_selector 'a', text: searches(:search1).name, count: 0
-    assert Search.none?
+    assert_predicate Search, :none?
   end
 end

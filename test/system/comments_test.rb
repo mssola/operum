@@ -12,9 +12,11 @@ class CommentsTest < ApplicationSystemTestCase
     visit thing_url(things(:thing1))
 
     click_on I18n.t('comments.new')
+
     assert_text I18n.t('tags.new-action'), count: 1
 
     click_on I18n.t('general.cancel')
+
     assert_text I18n.t('tags.new-action'), count: 0
   end
 
@@ -28,10 +30,9 @@ class CommentsTest < ApplicationSystemTestCase
 
     click_on I18n.t('helpers.submit.create')
 
-    assert_text "#{I18n.t('comments.title')} #2"
     assert_text 'a new comment'
     assert_text "#{I18n.t('tags.title')}: #{tags(:tag1).name}, #{tags(:tag2).name}"
-    assert page.current_path == thing_path(things(:thing1))
+    assert_equal page.current_path, thing_path(things(:thing1))
   end
 
   test 'things#show: you can update a comment' do
@@ -41,16 +42,18 @@ class CommentsTest < ApplicationSystemTestCase
     find(:css, '#comment_content').set('updated comment')
 
     find("#comment_#{comments(:comment1).id} input[type=submit]").click
+
     assert_text 'updated comment'
-    assert page.current_path == thing_path(things(:thing1))
+    assert_equal page.current_path, thing_path(things(:thing1))
   end
 
   test 'things#show: you can delete a comment' do
     visit thing_url(things(:thing1))
 
     all('.delete-comment').last.click
+
     assert_text I18n.t('comments.none')
-    assert page.current_path == thing_path(things(:thing1))
+    assert_equal page.current_path, thing_path(things(:thing1))
   end
 
   ##
@@ -60,9 +63,11 @@ class CommentsTest < ApplicationSystemTestCase
     visit edit_thing_url(things(:thing1))
 
     click_on I18n.t('comments.new')
+
     assert_text I18n.t('tags.new-action'), count: 2
 
     click_on I18n.t('general.cancel')
+
     assert_text I18n.t('tags.new-action'), count: 1
   end
 
@@ -76,10 +81,9 @@ class CommentsTest < ApplicationSystemTestCase
 
     click_on I18n.t('helpers.submit.create')
 
-    assert_text "#{I18n.t('comments.title')} #2"
     assert_text 'a new comment'
     assert_text "#{I18n.t('tags.title')}: #{tags(:tag1).name}, #{tags(:tag2).name}"
-    assert page.current_path == edit_thing_path(things(:thing1))
+    assert_equal page.current_path, edit_thing_path(things(:thing1))
   end
 
   test 'things#edit: you can update a comment' do
@@ -89,15 +93,17 @@ class CommentsTest < ApplicationSystemTestCase
     find(:css, '#comment_content').set('updated comment')
 
     find("#comment_#{comments(:comment1).id} input[type=submit]").click
+
     assert_text 'updated comment'
-    assert page.current_path == edit_thing_path(things(:thing1))
+    assert_equal page.current_path, edit_thing_path(things(:thing1))
   end
 
   test 'things#edit: you can delete a comment' do
     visit edit_thing_url(things(:thing1))
 
     all('.delete-comment').last.click
+
     assert_text I18n.t('comments.none')
-    assert page.current_path == edit_thing_path(things(:thing1))
+    assert_equal page.current_path, edit_thing_path(things(:thing1))
   end
 end

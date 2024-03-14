@@ -13,6 +13,7 @@ class CommentTest < ActiveSupport::TestCase
 
   test 'has many tags through tag_references' do
     comment = comments(:comment1)
-    assert comment.tags.size == 1
+
+    assert_equal 1, comment.tags.size
   end
 end

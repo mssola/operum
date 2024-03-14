@@ -90,6 +90,9 @@ Rails.application.configure do
   # Don't log any deprecations.
   config.active_support.report_deprecations = false
 
+  # In our case having SQLite in production is actually just fine!
+  config.active_record.sqlite3_production_warning = false
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
