@@ -43,6 +43,10 @@ en:
   ##
   # App-specific strings.
 
+  meta:
+    description: |
+      Keep track of all your sources (i.e. books, papers, articles), add notes and tag them. Handle your bibliography with groups that make sense to you and that can be exported and used on the projects you care and are working on.
+
   general:
     sure: Are you sure?
     edit: edit

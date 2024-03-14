@@ -43,6 +43,10 @@ ca:
   ##
   # App-specific strings.
 
+  meta:
+    description: |
+      Gestiona les teves fonts (p.e. llibres, articles), afegeix-hi notes, etiqueta-les. Agrupa la teva bibliografia en grups que tenen sentit per a tu i que pot ser exportada i utilitzada en els projectes que estàs treballant.
+
   general:
     sure: N'estàs segur?
     edit: edita

@@ -1,8 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.default_locale %>">
   <head>
     <title><%= ENV.fetch('OPERUM_BASE_TITLE', 'Operum') %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="author" content="Miquel Sabaté Solà">
+
+    <meta name="description" content="<%= I18n.t('meta.description') %>">
+    <% if I18n.default_locale == :ca %>
+      <meta property="og:locale" content="ca_ES" />
+    <% else %>
+      <meta property="og:locale" content="en_US" />
+    <% end %>
+    <meta property="og:url" content="https://github.com/mssola/operum" />
+    <meta property="og:title" content="<%= ENV.fetch('OPERUM_BASE_TITLE', 'Operum') %>" />
+    <meta property="og:description" content="<%= I18n.t('meta.description') %>" />
+
+    <link rel="alternate" hreflang="<%= I18n.default_locale %>" href="<%= request.base_url %>">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

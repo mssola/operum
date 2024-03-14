@@ -40,7 +40,7 @@ this done. After building the image, remember that:
 
 1. You need to provide a `RAILS_MASTER_KEY`, just like any other Rails application.
 2. You need to create a Docker volume for the `/rails/storage` path. This path
-   will contain the SQLite3 database, and so you need this to persist across
+   will contain the SQLite3 database and thus you need this to persist across
    deployments.
 
 Oh, yeah, we are using SQLite3 in production, no biggie! For the use case of
@@ -53,12 +53,12 @@ want to touch:
 - `OPERUM_BASE_TITLE`: the title that is going to be shown for the application.
   By default this is set to be just `Operum`.
 - `OPERUM_DEFAULT_LOCALE`: that's right, this application supports multiple
-  languages! For now these languages are Catalan and English (but other
-  languages are also welcomed, just hit me with a
+  languages! For now these languages are catalan and english but other languages
+  are also welcome, just hit me with a
   [PR](https://github.com/mssola/operum/pulls) and take a look at the files
-  under `config/locales`), and if you set this environment variable you need to
-  provide the code (i.e. `en` for english and `ca` for catalan). By default this
-  application uses catalan.
+  under `config/locales`. You can change the default locale (catalan) by setting
+  this environment variable with the language code for it (i.e. `en` for
+  english).
 
 ## Contributing
 
