@@ -29,7 +29,7 @@
       <header data-controller="header">
         <nav>
           <a class="<%= 'current' if current_user.last_search_id.nil? %>" href="/"><%= I18n.t('searches.home') %></a>
-          <% Search.find_each do |s| %>
+          <% @searches.each do |s| %>
             <a class="<%= 'current' if current_user.last_search_id == s.id %>" href="<%= search_path(s) %>"><%= s.name %></a>
           <% end %>
           <a id="toggle-hidden-global-menu" href="#" data-action="header#toggle"><i id="header-chevron" class="gg-chevron-down"></i></a>

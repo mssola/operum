@@ -17,6 +17,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_searches
-    @searches = Search.all
+    @searches = Search.order(:name)
   end
 end

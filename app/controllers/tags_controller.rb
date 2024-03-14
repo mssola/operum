@@ -4,7 +4,7 @@ class TagsController < ApplicationController
   before_action :set_tag, only: %i[destroy]
 
   def index
-    @tags = Tag.all
+    @tags = Tag.order(:name)
   end
 
   def new
