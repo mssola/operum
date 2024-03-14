@@ -23,7 +23,6 @@ class Thing < ApplicationRecord
          .or(where('publisher LIKE ?', "%#{text}%"))
          .or(where('address LIKE ?', "%#{text}%"))
          .or(where('url LIKE ?', "%#{text}%"))
-         .or(where('location LIKE ?', "%#{text}%"))
          .or(where('insideof LIKE ?', "%#{text}%"))
          .or(where('pages LIKE ?', "%#{text}%"))
          .or(where('note LIKE ?', "%#{text}%"))

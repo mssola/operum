@@ -7,7 +7,6 @@ thing1:
   address:
   year: 2024
   url: 'http://example.com'
-  location: 'Somewhere'
   insideof: 'Some other thing'
   pages: '22-24'
   note: 'This is a note 1'
@@ -27,7 +26,6 @@ thing2:
   address: 'Address 2'
   year: 2024
   url: 'http://example.com'
-  location: 'Somewhere'
   insideof: 'Some other thing'
   pages: '22-24'
   note: 'This is a note 2'
