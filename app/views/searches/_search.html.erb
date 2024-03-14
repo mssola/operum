@@ -1,7 +1,7 @@
 <div id="items">
   <% els = items.values.flatten %>
   <% if els.empty? %>
-    <% if current_user.last_search_id.nil? %>
+    <% if current_user.last_search_id.nil? && action_name != "search" %>
       <p><%= I18n.t('things.none') %> <%= link_to I18n.t('license.here'), new_thing_path %>.</p>
     <% else %>
       <p><%= I18n.t('searches.none') %>.</p>
