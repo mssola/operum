@@ -59,9 +59,9 @@ class Search < ApplicationRecord
 
     plain.each do |text|
       res[:things] = if res[:things].any?
-                       res[:things].and(Thing.like(text:)).order('rate DESC, created_at')
+                       res[:things].and(Thing.like(text:)).order('rate DESC, title, created_at')
                      else
-                       Thing.like(text:).order('rate DESC, created_at')
+                       Thing.like(text:).order('rate DESC, title, created_at')
                      end
       res[:comments] = if res[:comments].any?
                          res[:comments].and(Comment.like(text:)).order(:created_at)
