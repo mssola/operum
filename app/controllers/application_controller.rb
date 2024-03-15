@@ -19,4 +19,15 @@ class ApplicationController < ActionController::Base
   def set_searches
     @searches = Search.order(:name)
   end
+
+  # Redirect to the search that was last used by the current user.
+  def redirect_to_search!
+    search_id = current_user&.last_search_id
+
+    if search_id
+      redirect_to search_path(search_id)
+    else
+      redirect_to root_url
+    end
+  end
 end

@@ -24,4 +24,17 @@ class SessionsTest < ApplicationSystemTestCase
 
     assert_text I18n.t('sessions.title')
   end
+
+  test 'keeps the last search on sign in' do
+    sign_in!
+
+    assert_equal current_url, root_url
+
+    click_on searches(:search1).name
+    click_on I18n.t('sessions.sign-out')
+
+    sign_in!
+
+    assert_equal current_url, search_url(searches(:search1))
+  end
 end
