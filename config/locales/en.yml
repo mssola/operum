@@ -117,6 +117,7 @@ en:
     object: source
     create-another: Create another one
     none: There are no sources yet. You can add a new one by clicking
+    go-to: Follow external link
 
     create-success: New source was successfully created
     update-success: Source was successfully updated

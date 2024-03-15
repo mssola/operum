@@ -39,9 +39,12 @@
       <%= form.text_field :address, autocapitalize: 'on' %>
     </div>
 
-    <div>
-      <%= form.label :url %>
-      <%= form.text_field :url %>
+    <div data-controller="thing">
+      <%= form.label :url do %>
+        <%= I18n.t('activerecord.attributes.thing.url') %>
+        <a id="thing-external-url-id" href="<%= thing.url %>" target="_blank" title="<%= I18n.t('things.go-to') %>" class="<%= 'hidden' if thing.url.blank? %>"><i class="gg-external"></i></a>
+      <% end %>
+      <%= form.text_field :url, "data-action": "thing#updateLink" %>
     </div>
 
     <div>

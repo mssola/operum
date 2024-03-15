@@ -117,6 +117,7 @@ ca:
     object: font
     destroy-success: Font esborrada correctament
     none: Encara no hi ha cap font. Pots crear-ne una fent click
+    go-to: Segueix l'enllaç en una nova pestanya
 
     create-another: Afegeix-ne una altra
     create-success: Nova font creada correctament
