@@ -4,29 +4,29 @@
   <div id="thing_form">
     <div class="thing_large">
       <%= form.label :title %>
-      <%= form.text_field :title, autofocus: true, required: true %>
+      <%= form.text_field :title, autofocus: true, autocapitalize: 'on', required: true %>
     </div>
 
     <div class="thing_large">
       <%= form.label :authors %>
-      <%= form.text_field :authors, required: true %>
+      <%= form.text_field :authors, autocapitalize: 'words', required: true %>
       <%= form.check_box :editors %>
       <%= form.label :editors %>
     </div>
 
     <div class="thing_large">
       <%= form.label :note %>
-      <%= form.text_field :note %>
+      <%= form.text_field :note, autocapitalize: 'on' %>
     </div>
 
     <div>
       <%= form.label :target %>
-      <%= form.text_field :target, required: true %>
+      <%= form.text_field :target, autocapitalize: 'on', required: true %>
     </div>
 
     <div>
       <%= form.label :publisher %>
-      <%= form.text_field :publisher %>
+      <%= form.text_field :publisher, autocapitalize: 'on' %>
     </div>
 
     <div>
@@ -36,7 +36,7 @@
 
     <div>
       <%= form.label :address %>
-      <%= form.text_field :address %>
+      <%= form.text_field :address, autocapitalize: 'on' %>
     </div>
 
     <div>
@@ -51,7 +51,7 @@
 
     <div>
       <%= form.label :insideof %>
-      <%= form.text_field :insideof %>
+      <%= form.text_field :insideof, autocapitalize: 'on' %>
     </div>
 
     <div>
@@ -81,7 +81,7 @@
 
     <div>
       <%= form.label :where_is_it %>
-      <%= form.text_field :where_is_it %>
+      <%= form.text_field :where_is_it, autocapitalize: 'on' %>
     </div>
  </div>
 
