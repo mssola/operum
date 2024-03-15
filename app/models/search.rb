@@ -12,7 +12,7 @@ class Search < ApplicationRecord
     # This can happen as part of an empty Search.new instance. That is, it's
     # still invalid, but it's the object being initialized for the default
     # search (i.e. just show me everything).
-    return { things: Thing.order('rate DESC, created_at'), comments: [] } if body.blank?
+    return { things: Thing.order('rate DESC, title, created_at'), comments: [] } if body.blank?
 
     # Parse the body of the search, and return early if nothing was able to be
     # parsed (e.g. user wrote unknown identifiers).
@@ -109,8 +109,10 @@ class Search < ApplicationRecord
 
     query = TagReference.where(tag: tags, taggable_type: 'Thing')
     query = query.where(taggable_id: res[:things].pluck(:id)) if res[:things].present?
-    res[:things] = query.group(:taggable_id)
+    res[:things] = query.joins('INNER JOIN things ON things.id = tag_references.taggable_id')
+                        .group(:taggable_id)
                         .having('count(taggable_id) = ?', tags.size)
+                        .order('things.rate DESC, things.title, things.created_at')
                         .map(&:taggable)
 
     query = TagReference.where(tag: tags, taggable_type: 'Comment')
