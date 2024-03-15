@@ -31,7 +31,7 @@ class CommentsTest < ApplicationSystemTestCase
     click_on I18n.t('helpers.submit.create')
 
     assert_text 'a new comment'
-    assert_text "#{I18n.t('tags.title')}: #{tags(:tag1).name}, #{tags(:tag2).name}"
+    assert_text "#{I18n.t('tags.title')}: #{tags(:tag2).name}, #{tags(:tag1).name}"
     assert_equal page.current_path, thing_path(things(:thing1))
   end
 
@@ -82,7 +82,7 @@ class CommentsTest < ApplicationSystemTestCase
     click_on I18n.t('helpers.submit.create')
 
     assert_text 'a new comment'
-    assert_text "#{I18n.t('tags.title')}: #{tags(:tag1).name}, #{tags(:tag2).name}"
+    assert_text "#{I18n.t('tags.title')}: #{tags(:tag2).name}, #{tags(:tag1).name}"
     assert_equal page.current_path, edit_thing_path(things(:thing1))
   end
 

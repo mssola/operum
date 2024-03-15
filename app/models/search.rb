@@ -31,7 +31,7 @@ class Search < ApplicationRecord
   def parse_body
     res = { tag: [], plain: [] }
 
-    body.split.each do |part|
+    split_body.each do |part|
       if part.include?(':')
         parts = part.split(':', 2)
         parts[1] = clean_clause(part: parts[1])
@@ -44,6 +44,31 @@ class Search < ApplicationRecord
       end
     end
 
+    res
+  end
+
+  # Returns the body split into its constituents. Note that we cannot mindlessly
+  # do something like `body.split` because that would ignore quotes that are not
+  # to be split among other things.
+  def split_body
+    cur = ''
+    res = []
+    co  = ''
+
+    body.each_char do |c|
+      if c.match?(/\s/) && co == ''
+        res << cur if cur.present?
+        cur = ''
+      else
+        # If it is a quote character, check whether it's being opened or
+        # closed.
+        co = c == co ? '' : c if c == '"' || c == "'"
+
+        cur += c
+      end
+    end
+
+    res << cur if cur.present? && co.blank?
     res
   end
 
