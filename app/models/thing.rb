@@ -13,7 +13,8 @@ class Thing < ApplicationRecord
   has_many :tags, through: :tag_references
 
   enum :status, %i[read notread tobepublished], validate: true
-  enum :kind, %i[other poetry theater essay shorts novel paper letters phd], validate: true
+  enum :kind, %i[other poetry theater essay shorts
+                 novel paper letters phd chronicle], validate: true
 
   # Returns all things which match the given text for any of the string columns
   # from the table.
