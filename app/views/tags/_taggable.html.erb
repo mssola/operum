@@ -3,7 +3,7 @@
         <h5><%= I18n.t('tags.title') %> &#8212; <%= link_to I18n.t('tags.new-action'), new_tag_path %></h5>
 
         <div class="flex-list">
-            <% Tag.order(:name).find_each do |tag| %>
+            <% Tag.order(:name).each do |tag| %>
                 <div class="flex-element">
                     <label>
                         <%= form.check_box :tag_ids, { multiple: true, checked: tag_references&.include?(tag.id) }, tag.id, nil %>
