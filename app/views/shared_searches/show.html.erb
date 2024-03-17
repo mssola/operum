@@ -10,9 +10,11 @@
                             <div><span><b><%= I18n.t('activerecord.attributes.thing.publisher') %></b>: <%= string_maybe(res.publisher) %></span></div>
                             <div><span><b><%= I18n.t('activerecord.attributes.thing.year') %></b>: <%= string_maybe(res.year) %></span></div>
                             <div><span><b><%= I18n.t('activerecord.attributes.thing.kind') %></b>: <%= I18n.t("things.kind.#{res.kind}") %></span></div>
-                            <div><span><b><%= I18n.t('activerecord.attributes.thing.note') %></b>: <%= string_maybe(res.note) %></span></div>
+                            <% if res.note.present? %>
+                                <div><span><b><%= I18n.t('activerecord.attributes.thing.note') %></b>: <%= res.note %></span></div>
+                            <% end %>
                             <% unless res.url.blank? %>
-                                <div><span><b><%= I18n.t('activerecord.attributes.thing.url') %></b>: <a href="<%= res.url %>" target="_blank"><%= res.url %></a></span></div>
+                                <div><span><a href="<%= res.url %>" target="_blank"><%= I18n.t('activerecord.attributes.thing.url') %></a></span></div>
                             <% end %>
                         </div>
                     <% else %>
