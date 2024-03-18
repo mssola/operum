@@ -14,7 +14,7 @@ class Thing < ApplicationRecord
 
   enum :status, %i[read notread tobepublished], validate: true
   enum :kind, %i[other poetry theater essay shorts
-                 novel paper letters phd chronicle], validate: true
+                 novel paper letters phd chronicle bio], validate: true
 
   # Returns all things which match the given text for any of the string columns
   # from the table.
