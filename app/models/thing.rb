@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Thing < ApplicationRecord
-  validates :title, presence: true, uniqueness: true
   validates :target, presence: true, uniqueness: true
+  validates :title, presence: true
   validates :authors, presence: true
   validates :rate, numericality: { in: 0..10 }
 

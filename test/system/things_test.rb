@@ -56,15 +56,15 @@ class ThingsTest < ApplicationSystemTestCase
   test 'you get feedback from wrong values for a new thing' do
     visit new_thing_url
 
-    fill_in I18n.t('activerecord.attributes.thing.title'), with: things(:thing1).title
+    fill_in I18n.t('activerecord.attributes.thing.title'), with: 'whatever title'
     fill_in I18n.t('activerecord.attributes.thing.authors'), with: 'author'
-    fill_in I18n.t('activerecord.attributes.thing.target'), with: 'identifier'
+    fill_in I18n.t('activerecord.attributes.thing.target'), with: things(:thing1).target
     fill_in I18n.t('activerecord.attributes.thing.rate'), with: 5
     find("#thing_tag_ids_#{tags(:tag1).id}").click
 
     click_on I18n.t('helpers.submit.create')
 
-    assert_text "#{I18n.t('activerecord.attributes.thing.title')} " \
+    assert_text "#{I18n.t('activerecord.attributes.thing.target')} " \
                 "#{I18n.t('errors.messages.taken')}"
   end
 
@@ -87,13 +87,13 @@ class ThingsTest < ApplicationSystemTestCase
     assert_equal tags.map(&:id), [tags(:tag2).id]
   end
 
-  test 'you get feedback from wrong values for a thing' do
+  test 'you get feedback from wrong values when updating a thing' do
     visit edit_thing_url(things(:thing1))
 
-    fill_in I18n.t('activerecord.attributes.thing.title'), with: things(:thing2).title
+    fill_in I18n.t('activerecord.attributes.thing.target'), with: things(:thing2).target
     click_on I18n.t('helpers.submit.update')
 
-    assert_text "#{I18n.t('activerecord.attributes.thing.title')} " \
+    assert_text "#{I18n.t('activerecord.attributes.thing.target')} " \
                 "#{I18n.t('errors.messages.taken')}"
   end
 

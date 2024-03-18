@@ -60,18 +60,12 @@ class ThingTest < ActiveSupport::TestCase
     thing.save!
   end
 
-  test 'title and target must be unique' do
+  test 'target must be unique' do
     thing = things(:thing1).dup
 
-    thing.title = 'another'
     assert_raise(ActiveRecord::RecordInvalid) { thing.save! }
 
     thing.target = 'also another'
-    thing.title = things(:thing1).title
-    assert_raise(ActiveRecord::RecordInvalid) { thing.save! }
-
-    thing.target = 'also another'
-    thing.title = 'now for real'
     assert_difference('Thing.count') { thing.save! }
   end
 
