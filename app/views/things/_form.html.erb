@@ -1,7 +1,7 @@
 <%= form_with(model: thing) do |form| %>
   <%= render "layouts/errors", model: thing %>
 
-  <div id="thing_form">
+  <div id="thing_form" data-controller="thing">
     <div class="thing_large">
       <%= form.label :title %>
       <%= form.text_field :title, autofocus: true, autocapitalize: 'on', required: true %>
@@ -9,7 +9,7 @@
 
     <div class="thing_large">
       <%= form.label :authors %>
-      <%= form.text_field :authors, autocapitalize: 'words', required: true %>
+      <%= form.text_field :authors, autocapitalize: 'words', "data-action": "thing#authorsUpdate", required: true %>
       <%= form.check_box :editors %>
       <%= form.label :editors %>
     </div>
@@ -20,36 +20,18 @@
     </div>
 
     <div>
-      <%= form.label :target %>
-      <%= form.text_field :target, autocapitalize: 'on', required: true %>
-    </div>
-
-    <div>
       <%= form.label :publisher %>
       <%= form.text_field :publisher, autocapitalize: 'on' %>
     </div>
 
     <div>
       <%= form.label :year %>
-      <%= form.number_field :year %>
+      <%= form.number_field :year, "data-action": "thing#yearUpdate" %>
     </div>
 
     <div>
-      <%= form.label :address %>
-      <%= form.text_field :address, autocapitalize: 'on' %>
-    </div>
-
-    <div data-controller="thing">
-      <%= form.label :url do %>
-        <%= I18n.t('activerecord.attributes.thing.url') %>
-        <a id="thing-external-url-id" href="<%= thing.url %>" target="_blank" title="<%= I18n.t('things.go-to') %>" class="<%= 'hidden' if thing.url.blank? %>"><i class="gg-external"></i></a>
-      <% end %>
-      <%= form.text_field :url, "data-action": "thing#updateLink" %>
-    </div>
-
-    <div>
-      <%= form.label :access %>
-      <%= form.date_field :access %>
+      <%= form.label :target %>
+      <%= form.text_field :target, autocapitalize: 'on', "data-action": "thing#cancel", "data-thing-target": "identifier", required: true %>
     </div>
 
     <div>
@@ -65,6 +47,26 @@
     <div>
       <%= form.label :rate %>
       <%= form.number_field :rate, min: 0, max: 10, required: true %>
+    </div>
+
+    <div>
+      <%= form.label :address %>
+      <%= form.text_field :address, autocapitalize: 'on' %>
+    </div>
+
+    <div>
+      <%= form.label :url do %>
+        <%= I18n.t('activerecord.attributes.thing.url') %>
+        <a id="thing-external-url-id" href="<%= thing.url %>" target="_blank" title="<%= I18n.t('things.go-to') %>" class="<%= 'hidden' if thing.url.blank? %>"><i class="gg-external"></i></a>
+      <% end %>
+      <%= form.text_field :url, "data-action": "thing#updateLink" %>
+    </div>
+
+    <div>
+      <div id="thing-access-div" class="<%= 'hidden' if thing.url.blank? %>">
+        <%= form.label :access %>
+        <%= form.date_field :access %>
+      </div>
     </div>
 
     <div>
