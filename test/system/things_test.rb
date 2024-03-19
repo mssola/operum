@@ -106,4 +106,50 @@ class ThingsTest < ApplicationSystemTestCase
       assert_text I18n.t('things.destroy-success')
     end
   end
+
+  test '"access" appears/disappears whenever "url" is set/unset' do
+    visit edit_thing_url(things(:thing1))
+
+    assert_text I18n.t('activerecord.attributes.thing.access')
+
+    fill_in I18n.t('activerecord.attributes.thing.url'), with: ''
+
+    assert_text I18n.t('activerecord.attributes.thing.access'), count: 0
+
+    fill_in I18n.t('activerecord.attributes.thing.url'), with: 'whatever'
+
+    assert_text I18n.t('activerecord.attributes.thing.access')
+  end
+
+  test '"target" gets generated from last name' do
+    visit new_thing_url
+
+    fill_in I18n.t('activerecord.attributes.thing.authors'), with: 'Name LastName'
+
+    text = find_field(I18n.t('activerecord.attributes.thing.target')).value
+
+    assert_equal 'LastName', text
+  end
+
+  test '"target" gets generated from last name and year' do
+    visit new_thing_url
+
+    fill_in I18n.t('activerecord.attributes.thing.authors'), with: 'Name LastName'
+    fill_in I18n.t('activerecord.attributes.thing.year'), with: '2024'
+
+    text = find_field(I18n.t('activerecord.attributes.thing.target')).value
+
+    assert_equal 'LastName2024', text
+  end
+
+  test '"target" gets generated from multiple names and year' do
+    visit new_thing_url
+
+    fill_in I18n.t('activerecord.attributes.thing.authors'), with: 'Name LastName, John Smith'
+    fill_in I18n.t('activerecord.attributes.thing.year'), with: '2024'
+
+    text = find_field(I18n.t('activerecord.attributes.thing.target')).value
+
+    assert_equal 'LastNameSmith2024', text
+  end
 end
