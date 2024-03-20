@@ -15,10 +15,28 @@ class ExportsControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'text/csv', @response.media_type
   end
 
+  test 'csv: underscore is removed for the title' do
+    things(:thing1).update!(title: 'This is a _title_ with _many_ underscores')
+
+    get search_exports_url(0, format: 'csv')
+
+    body = @response.body.split("\n")
+
+    assert_equal 'This is a title with many underscores', body.last.split(',')[7]
+  end
+
   test 'uoc: works' do
     get search_exports_url(0, format: 'uoc')
 
     assert_equal @response.body, file_fixture('all.uoc.tex').read
     assert_equal 'application/x-tex', @response.media_type
+  end
+
+  test 'uoc: underscore is supported for the title' do
+    things(:thing1).update!(title: 'This is a _title_ with _many_ underscores')
+
+    get search_exports_url(0, format: 'uoc')
+
+    assert_equal @response.body, file_fixture('underscores.uoc.tex').read
   end
 end

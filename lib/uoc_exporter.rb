@@ -16,7 +16,7 @@ class UocExporter < BaseExporter
   # Returns the head of a line, containing authors, year, title and, if
   # available, the "inside of" information.
   def head(thing:)
-    str = "#{parse_authors(thing:)} (#{thing.year}). \\emph{#{thing.title}}."
+    str = "#{parse_authors(thing:)} (#{thing.year}). #{parse_title(title: thing.title)}."
 
     if thing.insideof.present?
       str += " #{inside_of(thing.insideof)}"
@@ -24,6 +24,25 @@ class UocExporter < BaseExporter
     end
 
     str
+  end
+
+  # Returns the title without underscores and with the expected formatting.
+  def parse_title(title:)
+    str = ''
+    seen = false
+
+    # I'm sure there is a clever (and comboluted) regexp that can also achieve
+    # this, but after some tries I decided to cut the crap.
+    title.each_char do |c|
+      if c == '_'
+        str += seen ? '\emph{' : '}'
+        seen = !seen
+      else
+        str += c
+      end
+    end
+
+    "\\emph{#{str}}"
   end
 
   # Parse the authors as delivered by `thing.authors` and render them in the
