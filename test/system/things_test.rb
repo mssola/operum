@@ -121,7 +121,7 @@ class ThingsTest < ApplicationSystemTestCase
     assert_text I18n.t('activerecord.attributes.thing.access')
   end
 
-  test '"target" gets generated from last name' do
+  test 'js: "target" gets generated from last name' do
     visit new_thing_url
 
     fill_in I18n.t('activerecord.attributes.thing.authors'), with: 'Name LastName'
@@ -131,7 +131,7 @@ class ThingsTest < ApplicationSystemTestCase
     assert_equal 'LastName', text
   end
 
-  test '"target" gets generated from last name and year' do
+  test 'js: "target" gets generated from last name and year' do
     visit new_thing_url
 
     fill_in I18n.t('activerecord.attributes.thing.authors'), with: 'Name LastName'
@@ -142,7 +142,7 @@ class ThingsTest < ApplicationSystemTestCase
     assert_equal 'LastName2024', text
   end
 
-  test '"target" gets generated from multiple names and year' do
+  test 'js: "target" gets generated from multiple names and year' do
     visit new_thing_url
 
     fill_in I18n.t('activerecord.attributes.thing.authors'), with: 'Name LastName, John Smith'
@@ -151,5 +151,27 @@ class ThingsTest < ApplicationSystemTestCase
     text = find_field(I18n.t('activerecord.attributes.thing.target')).value
 
     assert_equal 'LastNameSmith2024', text
+  end
+
+  test 'js: hyphenated names are treated together on "target" automation' do
+    visit new_thing_url
+
+    fill_in I18n.t('activerecord.attributes.thing.authors'), with: 'Name Last-Other, John Smith'
+    fill_in I18n.t('activerecord.attributes.thing.year'), with: '2024'
+
+    text = find_field(I18n.t('activerecord.attributes.thing.target')).value
+
+    assert_equal 'LastOtherSmith2024', text
+  end
+
+  test 'js: names surrounded by underscores are treated together on "target" automation' do
+    visit new_thing_url
+
+    fill_in I18n.t('activerecord.attributes.thing.authors'), with: 'Name _Last Other_, John Smith'
+    fill_in I18n.t('activerecord.attributes.thing.year'), with: '2024'
+
+    text = find_field(I18n.t('activerecord.attributes.thing.target')).value
+
+    assert_equal 'LastOtherSmith2024', text
   end
 end

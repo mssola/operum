@@ -33,12 +33,28 @@ export default class extends Controller {
       return;
     }
 
-    const authors = text.split(',').map(function(author) {
-      return author.split(' ').pop().trim();
-    });
-
-    this.firstPart = authors.join('');
+    this.firstPart = text.split(',').map(this.parseAuthor).join('');
     this.identifierTarget.value = `${this.firstPart}${this.lastPart}`;
+  }
+
+  // Returns the author compressed as expected for "target" autocompletion.
+  parseAuthor(author) {
+    // First of all try to match a pair of "_". If these are found, then we have
+    // to return whatever is in there with no spaces.
+    let idx = author.indexOf('_');
+
+    if (idx > -1) {
+      let idx2 = author.indexOf('_', idx + 1);
+      if (idx2 > -1) {
+        return author.substring(idx + 1, idx2).replace(' ', '');
+      }
+    }
+
+    // There was no pair of underscores, let's proceed by picking on the last
+    // name.
+    return author
+      .split(' ').pop().trim()  // Pick the last element.
+      .replace('-', '');        // "Last-Other" => "LastOther"
   }
 
   // Update the information we get from the year field so to autocomplete it
