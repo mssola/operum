@@ -30,6 +30,8 @@ ca:
         editors: Editors d'una col·lecció
         bought_at: Data de compra
         where_is_it: Per on para?
+      search:
+        body: Cos de la cerca
       user:
         username: Nom d'usuari
         password: Contrasenya
@@ -113,6 +115,7 @@ ca:
 
     create-success: Etiqueta creada correctament
     update-success: S'ha canviat el nom de l'etiqueta correctament
+    update-fail: "No s'ha pogut canviar el nom de l'etiqueta perquè comportaria problemes en cerques existents. Modifica primer les cerques que tinguin en compte aquest nom d'etiqueta"
     destroy-success: Etiqueta esborrada correctament
 
   things:

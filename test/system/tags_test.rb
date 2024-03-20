@@ -47,6 +47,9 @@ class SharedSearchesTest < ApplicationSystemTestCase
 
     assert_text I18n.t('tags.update-success')
     assert_text "#{tags(:tag1).name}-updated"
+
+    # Searches are also updated on tag renames.
+    assert_equal "tag:\"#{tags(:tag1).name}-updated\"", searches(:search1).body
   end
 
   test 'gives feedback on update errors' do
@@ -56,6 +59,15 @@ class SharedSearchesTest < ApplicationSystemTestCase
     click_on I18n.t('helpers.submit.update')
 
     assert_text "#{I18n.t('activerecord.attributes.tag.name')} #{I18n.t('errors.messages.taken')}"
+  end
+
+  test 'gives feedback when any of the searches could not be updated because of the tag rename' do
+    visit edit_tag_url(tags(:tag1))
+
+    fill_in I18n.t('activerecord.attributes.tag.name'), with: 'unknown'
+    click_on I18n.t('helpers.submit.update')
+
+    assert_text I18n.t('tags.update-fail')
   end
 
   test 'can delete an existing tag' do

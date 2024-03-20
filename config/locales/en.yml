@@ -30,6 +30,8 @@ en:
         editors: Editors of a collection
         bought_at: Bought at
         where_is_it: Where is it?
+      search:
+        body: Body
       user:
         username: Username
         password: Password
@@ -113,6 +115,7 @@ en:
 
     create-success: Tag was successfully created
     update-success: Tag was successfully updated
+    update-fail: Tag could not be updated because of conflicts with some searches. Update first searches which contain this tag name
     destroy-success: Tag was successfully deleted
 
   things:

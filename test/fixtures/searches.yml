@@ -1,4 +1,14 @@
 search1:
   name: 'search1'
-  body: "tag:\"tag1\""
+  body: 'tag:"tag1"'
+  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
+
+search2:
+  name: 'search2'
+  body: 'tag:"tag2"'
+  user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
+
+search3:
+  name: 'search3'
+  body: 'tag:"unknown"'
   user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>

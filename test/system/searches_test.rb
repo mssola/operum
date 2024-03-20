@@ -127,6 +127,6 @@ class SearchesTest < ApplicationSystemTestCase
     accept_alert { click_on I18n.t('general.delete') }
 
     assert_selector 'a', text: searches(:search1).name, count: 0
-    assert_predicate Search, :none?
+    assert_equal searches.size - 1, Search.count
   end
 end
