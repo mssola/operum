@@ -8,6 +8,9 @@ class ExportsControllerTest < ActionDispatch::IntegrationTest
     get search_exports_url(0, format: 'csv')
 
     body = @response.body.split("\n")
+
+    assert_nil body.last.index('_')
+
     targets = body.map { |b| b.split(',').first }
 
     assert_equal targets, [things(:thing2).target, things(:thing1).target]
