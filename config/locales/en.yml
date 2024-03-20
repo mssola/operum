@@ -107,10 +107,12 @@ en:
   tags:
     title: Tags
     new: New tag
+    update: Rename tag
     new-action: new
     none: You have not created any tags. You can do so by clicking
 
     create-success: Tag was successfully created
+    update-success: Tag was successfully updated
     destroy-success: Tag was successfully deleted
 
   things:

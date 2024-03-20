@@ -38,6 +38,9 @@ gem 'image_processing', '~> 1.2'
 group :development, :test do
   gem 'debug', platforms: %i[mri windows]
 
+  # Convenient & prettier printer.
+  gem 'awesome_print'
+
   # Security
   gem 'brakeman', require: false
   gem 'bundle-audit', require: false
@@ -46,9 +49,6 @@ end
 group :development do
   # Use console on exceptions pages.
   gem 'web-console'
-
-  # Convenient & prettier printer.
-  gem 'awesome_print'
 
   # Style
   gem 'rubocop', require: false

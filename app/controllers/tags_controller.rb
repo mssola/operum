@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TagsController < ApplicationController
-  before_action :set_tag, only: %i[destroy]
+  before_action :set_tag, only: %i[edit update destroy]
 
   def index
     @tags = Tag.order(:name)
@@ -11,6 +11,8 @@ class TagsController < ApplicationController
     @tag = Tag.new
   end
 
+  def edit; end
+
   def create
     @tag = Tag.new(tag_params)
 
@@ -18,6 +20,14 @@ class TagsController < ApplicationController
       redirect_to tags_url, notice: t('tags.create-success')
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @tag.update(tag_params)
+      redirect_to tags_url, notice: t('tags.update-success')
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 

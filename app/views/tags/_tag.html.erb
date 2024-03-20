@@ -3,6 +3,7 @@
     <%= tag.name %>
   </div>
   <div class="action">
+    <%= link_to I18n.t('general.edit'), edit_tag_path(tag) %> |
     <%= link_to I18n.t('general.delete'), tag_path(tag), data: { "turbo-method": :delete } %>
   </div>
 </div>
