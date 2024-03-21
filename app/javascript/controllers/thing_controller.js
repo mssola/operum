@@ -46,7 +46,7 @@ export default class extends Controller {
     if (idx > -1) {
       let idx2 = author.indexOf('_', idx + 1);
       if (idx2 > -1) {
-        return author.substring(idx + 1, idx2).replace(' ', '');
+        return author.substring(idx + 1, idx2).replaceAll(' ', '');
       }
     }
 
@@ -54,7 +54,7 @@ export default class extends Controller {
     // name.
     return author
       .split(' ').pop().trim()  // Pick the last element.
-      .replace('-', '');        // "Last-Other" => "LastOther"
+      .replaceAll('-', '');     // "Last-Other" => "LastOther"
   }
 
   // Update the information we get from the year field so to autocomplete it
