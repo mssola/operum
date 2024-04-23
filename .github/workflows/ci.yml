@@ -60,7 +60,7 @@ jobs:
     needs: [lint, test]
     if: github.event_name == 'push'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Build production Docker image
         run: |
@@ -75,7 +75,7 @@ jobs:
           docker push ${{ secrets.REGISTRY_HOST }}/${{ secrets.REGISTRY_USERNAME }}/operum:main
           docker logout ${{ secrets.REGISTRY_HOST }}
 
-      # The server provides a small script named `service-restart` which will do
+      # The server provides a small script named `infra-restart` which will do
       # the right thing to pull the new image of the desired service and re-run
       # it.
       - name: executing remote ssh commands using password
