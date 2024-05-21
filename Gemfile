@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.2.3'
+ruby '3.3.1'
 
 # Rails itself :)
 gem 'rails', '~> 7.1.3'
@@ -34,6 +34,9 @@ gem 'bootsnap', require: false
 
 # Use Active Storage variants.
 gem 'image_processing', '~> 1.2'
+
+# No longer in the standard library from Ruby 3.4 onwards.
+gem 'csv'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri windows]
