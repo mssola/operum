@@ -73,6 +73,7 @@ class SharedSearchesTest < ApplicationSystemTestCase
   test 'can delete an existing tag' do
     visit tags_url
 
+    # TODO: flaky
     assert_difference 'Tag.count', -1 do
       click_link(I18n.t('general.delete'), match: :first)
 
