@@ -25,3 +25,59 @@
 .comment .comment-header .comment-header-actions {
     flex-grow: 0;
 }
+
+/*
+ * Tweaks on Trix's toolbar in the comment section:
+ *   - Make it work on smaller screens.
+ *   - Hide the history tools on the desktop.
+ */
+
+trix-toolbar .trix-button-row {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+trix-toolbar .trix-button-group-spacer {
+    display: none;
+}
+
+trix-toolbar .trix-button-group:not(:first-child) {
+    margin-left: 0px;
+}
+
+trix-toolbar .trix-button-group {
+    border: none;
+}
+
+/*
+ * Display the history-tools for small screens, where the undo/redo experience
+ * might actually be bad.
+ */
+trix-toolbar .trix-button-group--history-tools {
+    display: flex;
+}
+
+@media (min-width: 600px) {
+    trix-toolbar .trix-button-row {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    trix-toolbar .trix-button-group-spacer {
+        display: none;
+    }
+
+    trix-toolbar .trix-button-group:not(:first-child) {
+        margin-left: 0px;
+    }
+}
+
+@media (min-width: 850px) {
+    /* I actually don't like the history-tools parts on the desktop. */
+    trix-toolbar .trix-button-group--history-tools {
+        display: none;
+    }
+
+    trix-toolbar .trix-button-group:not(:first-child) {
+        margin-left: 10px;
+    }
+}
