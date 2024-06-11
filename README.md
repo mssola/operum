@@ -1,9 +1,3 @@
-<p align="center">
-  <a href="https://github.com/mssola/operum/actions?query=workflow%3ACI" title="CI status for the main branch"><img src="https://github.com/mssola/operum/workflows/CI/badge.svg" alt="Build Status for main branch" /></a>
-</p>
-
----
-
 > mille dea est operum: certe dea carminis illa est; <br />
 > &emsp; si mereor, studiis adsit amica meis.
 >
