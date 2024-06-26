@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.3.2'
+ruby '3.3.3'
 
 # Rails itself :)
 gem 'rails', '~> 7.1.3'
@@ -37,6 +37,9 @@ gem 'image_processing', '~> 1.2'
 
 # No longer in the standard library from Ruby 3.4 onwards.
 gem 'csv'
+
+# Needed until Ruby 3.3.4 is released https://github.com/ruby/ruby/pull/11006
+gem 'net-pop', github: 'ruby/net-pop'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri windows]
