@@ -6,11 +6,13 @@ class SharedSearchesControllerTest < ActionDispatch::IntegrationTest
 
   test 'does not allow to show searches which have not been shared' do
     get search_shared_url(searches(:search1).id)
-    assert_equal @response.code.to_i, 404
+
+    assert_equal 404, @response.code.to_i
 
     searches(:search1).update!(shared: true)
 
     get search_shared_url(searches(:search1).id)
-    assert_equal @response.code.to_i, 200
+
+    assert_equal 200, @response.code.to_i
   end
 end
