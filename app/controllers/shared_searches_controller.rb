@@ -8,6 +8,6 @@ class SharedSearchesController < ApplicationController
   end
 
   def show
-    @search = Search.find(params[:search_id])
+    @search = Search.where(shared: true).find(params[:search_id])
   end
 end
