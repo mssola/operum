@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 ruby '3.3.4'
 
 # Rails itself :)
-gem 'rails', '~> 7.1.3'
+gem 'rails', '~> 7.2.0'
 gem 'rails-i18n', '~> 7.0.0'
 
 # The original asset pipeline for Rails.
