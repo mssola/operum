@@ -12,9 +12,10 @@ class Thing < ApplicationRecord
   has_many :tag_references, as: :taggable, dependent: :destroy
   has_many :tags, through: :tag_references
 
-  enum :status, %i[read notread tobepublished], validate: true
-  enum :kind, %i[other poetry theater essay shorts
-                 novel paper letters phd chronicle bio it], validate: true
+  enum :status, { read: 0, notread: 1, tobepublished: 2 }, validate: true
+  enum :kind, { other: 0, poetry: 1, theater: 2, essay: 3,
+                shorts: 4, novel: 5, paper: 6, letters: 7,
+                phd: 8, chronicle: 9, bio: 10, it: 11 }, validate: true
 
   # Returns all things which match the given text for any of the string columns
   # from the table.
