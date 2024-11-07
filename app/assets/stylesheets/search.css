@@ -73,3 +73,8 @@
     gap: 20px;
     flex-wrap: wrap;
 }
+
+#public-search-table summary {
+    /* Override the default break-all value */
+    word-break: break-word;
+}
