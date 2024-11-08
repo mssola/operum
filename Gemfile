@@ -12,10 +12,10 @@ gem 'rails-i18n', '~> 7.0.0'
 gem 'sprockets-rails'
 
 # sqlite3 should be fine for this project, and we keep things simpler.
-gem 'sqlite3', '~> 1.4'
+gem 'sqlite3'
 
 # Web server.
-gem 'puma', '>= 5.0'
+gem 'puma'
 
 # Use JavaScript with ESM import maps.
 gem 'importmap-rails'
@@ -27,13 +27,13 @@ gem 'turbo-rails'
 gem 'stimulus-rails'
 
 # Use Active Model has_secure_password.
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
 # Use Active Storage variants.
-gem 'image_processing', '~> 1.2'
+gem 'image_processing'
 
 # No longer in the standard library from Ruby 3.4 onwards.
 gem 'csv'
