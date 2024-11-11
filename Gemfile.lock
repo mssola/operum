@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/Shopify/rails-i18n.git
-  revision: 96778ff0651365a08db1b88aba486b844a0ac3e7
-  branch: schwad_rails_8
-  specs:
-    rails-i18n (7.0.9)
-      i18n (>= 0.7, < 2)
-      railties (>= 6.0.0)
-
-GIT
   remote: https://github.com/ruby/net-pop.git
   revision: e8d0afe2773b9eb6a23c39e9e437f6fc0fc7c733
   specs:
@@ -222,6 +213,9 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails-i18n (8.0.1)
+      i18n (>= 0.7, < 2)
+      railties (>= 8.0.0, < 9)
     railties (8.0.0)
       actionpack (= 8.0.0)
       activesupport (= 8.0.0)
@@ -334,7 +328,7 @@ DEPENDENCIES
   net-pop!
   puma
   rails (~> 8)
-  rails-i18n!
+  rails-i18n (~> 8)
   rubocop
   rubocop-minitest
   rubocop-performance

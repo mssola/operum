@@ -6,8 +6,7 @@ ruby '3.3.5'
 
 # Rails itself :)
 gem 'rails', '~> 8'
-# TODO: change to "gem 'rails-i18n'" whenever Rails 8 is supported there.
-gem 'rails-i18n', github: 'Shopify/rails-i18n', branch: 'schwad_rails_8'
+gem 'rails-i18n', '~> 8'
 
 # The original asset pipeline for Rails.
 gem 'sprockets-rails'
