@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TagsController < ApplicationController
-  before_action :set_tag, only: %i[edit update destroy]
+  before_action :set_tag, only: %i[edit update destroy search]
 
   def index
     @tags = Tag.order(:name)
@@ -57,10 +57,16 @@ class TagsController < ApplicationController
     redirect_to tags_url, notice: t('tags.destroy-success')
   end
 
+  def search
+    @search = Search.new(name: 'temporary', body: "tag:\"#{@tag.name}\"")
+
+    render 'searches/show'
+  end
+
   private
 
   def set_tag
-    @tag = Tag.find(params[:id])
+    @tag = Tag.find(params[:id] || params[:tag_id])
   end
 
   def tag_params

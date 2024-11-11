@@ -12,7 +12,10 @@ Rails.application.routes.draw do
     resource :exports, only: %i[new show]
   end
 
-  resources :tags
+  resources :tags do
+    get 'search' => 'tags#search'
+  end
+
   resources :things, except: %i[index] do
     resources :comments, only: %i[create update destroy]
   end

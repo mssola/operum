@@ -16,10 +16,19 @@
 .tag-container {
     display: flex;
     align-items: flex-start;
-}
 
-.tag-container .name {
-    flex-grow: 1;
+    .name {
+        flex-grow: 1;
+    }
+
+    .name a {
+        text-decoration: none;
+        color: var(--text) !important;
+    }
+
+    .name a:hover {
+        text-decoration: underline;
+    }
 }
 
 .tag-container .action {

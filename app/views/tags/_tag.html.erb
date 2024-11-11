@@ -1,9 +1,9 @@
 <div class="tag-container" id="<%= dom_id tag %>">
   <div class="name">
-    <%= tag.name %>
+    <%= link_to tag.name, edit_tag_path(tag), title: I18n.t('general.edit').capitalize %>
   </div>
   <div class="action">
-    <%= link_to I18n.t('general.edit'), edit_tag_path(tag) %> |
+    <%= link_to I18n.t('searches.object'), tag_search_path(tag) %> |
     <%= link_to I18n.t('general.delete'), tag_path(tag), data: { "turbo-method": :delete } %>
   </div>
 </div>

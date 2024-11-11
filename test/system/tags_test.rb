@@ -2,7 +2,7 @@
 
 require 'application_system_test_case'
 
-class SharedSearchesTest < ApplicationSystemTestCase
+class TagsTest < ApplicationSystemTestCase
   setup { sign_in! }
 
   test 'lists all the tags' do
@@ -34,7 +34,7 @@ class SharedSearchesTest < ApplicationSystemTestCase
   test 'can visit the edit_tag path from #index' do
     visit tags_url
 
-    click_link(I18n.t('general.edit'), match: :first)
+    click_link(Tag.first.name, match: :first)
 
     assert_text I18n.t('tags.update')
   end
@@ -73,11 +73,18 @@ class SharedSearchesTest < ApplicationSystemTestCase
   test 'can delete an existing tag' do
     visit tags_url
 
-    # TODO: flaky
     assert_difference 'Tag.count', -1 do
       click_link(I18n.t('general.delete'), match: :first)
 
       assert_text I18n.t('tags.title')
     end
+  end
+
+  test 'can search on a given tag' do
+    visit tags_url
+
+    click_link(I18n.t('searches.object'), match: :first)
+
+    assert_text Thing.find_by(target: 'target1').title
   end
 end
