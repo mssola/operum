@@ -4,7 +4,7 @@
             <% if defined?(idx) %>
                 <span title="Commented on <%= comment.created_at %>"><b><%= I18n.t('comments.title') %></b> #<%= idx + 1 %></span>
             <% else %>
-                <span title="Commented on <%= comment.created_at %>"><b><%= I18n.t('comments.title') %></b> <%= I18n.t('general.in') %> <%= link_to comment.thing.title, thing_path(comment.thing) %></span>
+                <span title="Commented on <%= comment.created_at %>"><b><%= I18n.t('comments.title') %></b> <%= I18n.t('general.in') %> <%= link_to title_to_html(title: comment.thing.title), thing_path(comment.thing) %></span>
             <% end %>
         </div>
 
