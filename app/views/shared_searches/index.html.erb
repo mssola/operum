@@ -3,11 +3,11 @@
     <div>
         <h3><%= I18n.t('searches.shared.title') %></h3>
 
-        <% if @searches.empty? %>
+        <% if @saved_searches.empty? %>
             <div><span><%= I18n.t('searches.shared.none') %>.</span></div>
         <% else %>
             <div id="shared-searches-list">
-                <% @searches.each do |s| %>
+                <% @saved_searches.each do |s| %>
                     <div>
                         <%= link_to s.name, search_shared_path(s) %>
                     </div>

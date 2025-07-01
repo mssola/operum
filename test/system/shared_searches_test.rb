@@ -15,6 +15,17 @@ class SharedSearchesTest < ApplicationSystemTestCase
     assert_text I18n.t('searches.shared.none')
   end
 
+  test 'shared_searches#index shows the searches at the top bar when logged in' do
+    assert_no_text searches(:search1).name
+
+    sign_in!
+
+    find('#toggle-hidden-global-menu').click
+    click_on I18n.t('searches.shared.title').downcase
+
+    assert_text searches(:search1).name
+  end
+
   test 'cannot access shared_searches#index if not logged in' do
     sign_out_maybe!
 
