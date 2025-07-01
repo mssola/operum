@@ -42,4 +42,21 @@ class ExportsControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal @response.body, file_fixture('underscores.uoc.tex').read
   end
+
+  test 'plain: works' do
+    get search_exports_url(0, format: 'txt')
+
+    assert_equal @response.body, file_fixture('all.txt').read.strip
+    assert_equal 'text/plain', @response.media_type
+  end
+
+  test 'plain: underscore is removed for the title' do
+    things(:thing1).update!(title: 'This is a _title_ with _many_ underscores')
+
+    get search_exports_url(0, format: 'txt')
+
+    body = @response.body.split("\n")
+
+    assert_includes body.last, 'This is a title with many underscores'
+  end
 end

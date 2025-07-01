@@ -8,6 +8,12 @@ class ExportsController < ApplicationController
     respond_to do |format|
       format.csv { set_file_name!(ext: 'csv') }
       format.uoc { set_file_name!(ext: 'tex') }
+      format.text do
+        send_data PlainExporter.new(things: @results).export,
+                  type:        'text/plain',
+                  disposition: 'attachment',
+                  filename:    "#{@search.name}.txt"
+      end
     end
   end
 

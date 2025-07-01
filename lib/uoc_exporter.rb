@@ -13,17 +13,14 @@ class UocExporter < BaseExporter
 
   protected
 
-  # Returns the head of a line, containing authors, year, title and, if
-  # available, the "inside of" information.
-  def head(thing:)
-    str = "#{parse_authors(thing:)} (#{thing.year}). #{parse_title(title: thing.title)}."
+  # Returns the same text with LaTeX \emph applied.
+  def emph(text:)
+    "\\emph{#{text}}"
+  end
 
-    if thing.insideof.present?
-      str += " #{inside_of(thing.insideof)}"
-      str += thing.pages.present? ? ", #{thing.pages}." : '.'
-    end
-
-    str
+  # Returns the same text with LaTeX \textsc applied.
+  def upper_case(text:)
+    "\\textsc{#{text}}"
   end
 
   # Returns the title without underscores and with the expected formatting.
@@ -43,29 +40,6 @@ class UocExporter < BaseExporter
     end
 
     "\\emph{#{str}}"
-  end
-
-  # Parse the authors as delivered by `thing.authors` and render them in the
-  # proper format.
-  def parse_authors(thing:)
-    str = thing.authors.split(',').map do |author|
-      first, last = parse_author(author: author.strip)
-      last.blank? ? "\\textsc{#{first}}" : "\\textsc{#{last}}, #{first}"
-    end.join('; ')
-
-    str += ' (eds.)' if thing.editors
-    str
-  end
-
-  # Returns the proper 'inside of' translated text.
-  def inside_of(sub)
-    str = if sub.downcase.start_with?(*%w[a e i o u])
-            I18n.t('general.insideof-vowel')
-          else
-            I18n.t('general.insideof')
-          end
-
-    str + " \\emph{#{sub}}"
   end
 
   # Returns the 'body' of the line, which is the rest of it (i.e. note,

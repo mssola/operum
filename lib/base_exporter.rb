@@ -5,6 +5,8 @@ class BaseExporter
     @things = things
   end
 
+  protected
+
   # Returns a string which forces a new TeX line.
   def tex_new_line
     '\\\\~\\\\'
@@ -25,5 +27,45 @@ class BaseExporter
     return [author, nil] if a.size == 1
 
     [a[0..-2].join(' '), a.last]
+  end
+
+  # Parse the string in `thing.authors` and put each author followed by
+  # semicolon and the right order for first and last name. It will also cover
+  # whenever editors are involved.
+  def parse_authors(thing:)
+    str = thing.authors.split(',').map do |author|
+      first, last = parse_author(author: author.strip)
+      last.blank? ? upper_case(text: first).to_s : "#{upper_case(text: last)}, #{first}"
+    end.join('; ')
+
+    str += ' (eds.)' if thing.editors
+    str
+  end
+
+  # Returns an "Inside of" string where `sub` is the substring contained in it.
+  def inside_of(sub:)
+    str = if sub.downcase.start_with?(*%w[a e i o u])
+            I18n.t('general.insideof-vowel')
+          else
+            I18n.t('general.insideof')
+          end
+
+    str + " #{emph(text: sub)}"
+  end
+
+  # Returns the head of a formatted "thing", containing authors, year, title
+  # and, if available, the "inside of" information. This is shared across some
+  # exporters, thus placed in here.
+  #
+  # NOTE: the subclass *must* implement `parse_title`.
+  def head(thing:)
+    str = "#{parse_authors(thing:)} (#{thing.year}). #{parse_title(title: thing.title)}."
+
+    if thing.insideof.present?
+      str += " #{inside_of(sub: thing.insideof)}"
+      str += thing.pages.present? ? ", #{thing.pages}." : '.'
+    end
+
+    str
   end
 end
