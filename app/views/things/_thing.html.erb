@@ -2,6 +2,8 @@
   <div class="thing_head">
     <div class="dot dot_<%= thing.kind %>" title="<%= I18n.t("things.kind.#{thing.kind}") %>"></div>
   </div>
-  <div class="thing_body"><%= link_to title_to_html(title: thing.title), edit_thing_path(thing) %></div>
+  <div class="thing_body" title="<%= PlainExporter.new(things: [thing]).export %>">
+    <%= link_to title_to_html(title: thing.title), edit_thing_path(thing) %>
+  </div>
   <div class="thing_tail"><%= thing.rate %></div>
 </div>
