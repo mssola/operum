@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_08_085227) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_01_132737) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -64,6 +64,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_08_085227) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "shared", default: false
+    t.text "description"
     t.index ["body"], name: "index_searches_on_body", unique: true
     t.index ["name"], name: "index_searches_on_name", unique: true
     t.index ["user_id"], name: "index_searches_on_user_id"

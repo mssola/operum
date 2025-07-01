@@ -10,5 +10,6 @@ class SharedSearchesController < ApplicationController
 
   def show
     @search = Search.where(shared: true).find(params[:search_id])
+    @results = @search.results.values.flatten
   end
 end

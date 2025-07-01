@@ -30,7 +30,9 @@ export default class extends Controller {
     document.getElementById("search-form-submit").classList.toggle("hidden");
     document.getElementById("save-search").classList.toggle("hidden");
     document.getElementById("search-form-name").classList.toggle("hidden");
+    document.getElementById("search-form-description").classList.toggle("hidden");
     document.getElementById("search-form-shared").classList.toggle("hidden");
+    document.getElementById("search-body-label").classList.toggle("hidden");
     document.getElementById("search_name").focus();
   }
 }

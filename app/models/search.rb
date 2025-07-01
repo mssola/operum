@@ -6,6 +6,8 @@ class Search < ApplicationRecord
 
   belongs_to :user
 
+  has_rich_text :description
+
   # Returns all the results that can be fetched with the current `body`. It's
   # returned into a hash which groups the taggable types.
   def results

@@ -8,7 +8,13 @@
         <%= form.text_field :name, required: true, autocomplete: 'off', autocapitalize: 'on' %>
       </div>
 
+      <div id="search-form-description" class="hidden">
+        <%= form.label :description %>
+        <%= form.rich_textarea :description %>
+      </div>
+
       <div>
+        <%= form.label :body, id: 'search-body-label', class: 'hidden' %>
         <%= form.text_field :body, "data-action": "keydown.enter->search#load", "data-search-target": "body", placeholder: 'Search body' %>
         <a id="save-search" href="#" data-action="search#save" class="hidden"><%= I18n.t('searches.save') %></a>
       </div>
