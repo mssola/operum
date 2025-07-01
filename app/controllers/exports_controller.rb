@@ -36,6 +36,7 @@ class ExportsController < ApplicationController
               else
                 Search.find(params[:search_id])
               end
+    @subtitle = @search.name
   end
 
   def set_results

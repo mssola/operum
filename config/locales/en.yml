@@ -114,6 +114,7 @@ en:
     update: Rename tag
     new-action: new
     none: You have not created any tags. You can do so by clicking
+    searching-by: Searching by tag
 
     create-success: Tag was successfully created
     update-success: Tag was successfully updated

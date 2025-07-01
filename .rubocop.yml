@@ -112,3 +112,10 @@ Naming/MethodParameterName:
 
 Minitest/MultipleAssertions:
   Max: 5
+
+#
+# Rails
+#
+
+Rails/HelperInstanceVariable:
+  Enabled: false

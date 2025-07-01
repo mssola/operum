@@ -14,6 +14,7 @@ class SearchesController < ApplicationController
 
   def new
     @search = Search.new
+    @subtitle = I18n.t('searches.title')
   end
 
   def edit; end
@@ -52,6 +53,7 @@ class SearchesController < ApplicationController
 
   def set_search
     @search = Search.find(params[:id])
+    @subtitle = @search.name
   end
 
   def search_params

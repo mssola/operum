@@ -5,10 +5,12 @@ class TagsController < ApplicationController
 
   def index
     @tags = Tag.order(:name)
+    @subtitle = I18n.t('tags.title')
   end
 
   def new
     @tag = Tag.new
+    @subtitle = I18n.t('tags.title')
   end
 
   def edit; end
@@ -59,6 +61,7 @@ class TagsController < ApplicationController
 
   def search
     @search = Search.new(name: 'temporary', body: "tag:\"#{@tag.name}\"")
+    @subtitle = "#{I18n.t('tags.searching-by')} '#{@tag.name}'"
 
     render 'searches/show'
   end

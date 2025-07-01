@@ -9,6 +9,7 @@ class ThingsController < ApplicationController
 
   def new
     @thing = Thing.new
+    @subtitle = I18n.t('activerecord.models.thing')
   end
 
   def edit; end
@@ -59,6 +60,7 @@ class ThingsController < ApplicationController
 
   def set_thing
     @thing = Thing.find(params[:id])
+    @subtitle = @thing.title
   end
 
   def thing_params
