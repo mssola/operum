@@ -20,7 +20,7 @@ AllCops:
 ##
 # Plugins
 
-require:
+plugins:
   - rubocop-rails
   - rubocop-performance
   - rubocop-minitest
