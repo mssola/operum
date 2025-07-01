@@ -31,7 +31,9 @@ en:
         bought_at: Bought at
         where_is_it: Where is it?
       search:
-        body: Body
+        name: Name
+        description: Description
+        body: Prompt
       user:
         username: Username
         password: Password

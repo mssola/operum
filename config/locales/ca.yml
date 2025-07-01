@@ -31,6 +31,8 @@ ca:
         bought_at: Data de compra
         where_is_it: Per on para?
       search:
+        name: Nom
+        description: Descripció
         body: Cos de la cerca
       user:
         username: Nom d'usuari
