@@ -57,6 +57,6 @@ class SearchesController < ApplicationController
   end
 
   def search_params
-    params.require(:search).permit(:name, :body, :description, :shared)
+    params.expect(search: %i[name body description shared])
   end
 end

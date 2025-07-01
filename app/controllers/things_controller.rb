@@ -64,8 +64,8 @@ class ThingsController < ApplicationController
   end
 
   def thing_params
-    params.require(:thing).permit(:target, :title, :publisher, :address, :year, :url, :access,
-                                  :authors, :insideof, :pages, :rate, :status, :kind, :bought_at,
-                                  :editors, :note, :where_is_it, tag_ids: [])
+    params.expect(thing: [:target, :title, :publisher, :address, :year, :url, :access,
+                          :authors, :insideof, :pages, :rate, :status, :kind, :bought_at,
+                          :editors, :note, :where_is_it, { tag_ids: [] }])
   end
 end
