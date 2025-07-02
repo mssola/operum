@@ -21,3 +21,9 @@ first release. That being said, these might be the most relevant changes:
 - [e9e3bd170a3a](https://github.com/mssola/operum/commit/e9e3bd170a3a) Fix the trix toolbar for smaller screens
 - [8d954606eaf3](https://github.com/mssola/operum/commit/8d954606eaf3) Do not allow to show non-shared searches
 - [c0befbd02559](https://github.com/mssola/operum/commit/c0befbd02559) Allow searching from a given tag
+- [34e16b7d7a88](https://github.com/mssola/operum/commit/34e16b7d7a88) and
+  [94c48771afa3](https://github.com/mssola/operum/commit/94c48771afa3):
+  Introduce an exporter for plain text and use it as the HTML `title` for each
+  source being listed on a search.
+- [804c99fce669](https://github.com/mssola/operum/commit/804c99fce669): Add rich
+  text description for searches, and display it when showing a shared search.
