@@ -15,7 +15,7 @@
 
       <div>
         <%= form.label :body, id: 'search-body-label', class: 'hidden' %>
-        <%= form.text_field :body, "data-action": "keydown.enter->search#load", "data-search-target": "body", placeholder: 'Search body' %>
+        <%= form.text_field :body, "data-action": "keydown.enter->search#load", "data-search-target": "body", placeholder: I18n.t('searches.title') %>
         <a id="save-search" href="#" data-action="search#save" class="hidden"><%= I18n.t('searches.save') %></a>
       </div>
 
