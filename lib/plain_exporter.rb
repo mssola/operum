@@ -33,8 +33,11 @@ class PlainExporter < BaseExporter
       str += thing.note.present? ? "#{thing.note}. #{thing.publisher}" : thing.publisher
     end
 
+    str = str.strip
     if thing.address.present?
       str + ", #{thing.address}: #{thing.year}."
+    elsif str.blank?
+      nil
     else
       "#{str}."
     end

@@ -59,7 +59,11 @@ class BaseExporter
   #
   # NOTE: the subclass *must* implement `parse_title`.
   def head(thing:)
-    str = "#{parse_authors(thing:)} (#{thing.year}). #{parse_title(title: thing.title)}."
+    str = if thing.year
+            "#{parse_authors(thing:)} (#{thing.year}). #{parse_title(title: thing.title)}."
+          else
+            "#{parse_authors(thing:)}. #{parse_title(title: thing.title)}."
+          end
 
     if thing.insideof.present?
       str += " #{inside_of(sub: thing.insideof)}"
