@@ -110,6 +110,7 @@ ca:
 
   tags:
     title: Etiquetes
+    title-singular: Etiqueta
     new: Etiqueta nova
     new-action: nova
     update: Reanomena l'etiqueta

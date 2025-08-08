@@ -8,9 +8,7 @@ class ThingsTest < ApplicationSystemTestCase
   test 'the hidden menu has a things#new link' do
     find('#toggle-hidden-global-menu').click
 
-    assert_text I18n.t('things.object').downcase
-
-    click_on I18n.t('things.object').downcase
+    find('#new-thing').click
 
     assert_text I18n.t('activerecord.attributes.thing.title')
 

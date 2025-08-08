@@ -22,9 +22,7 @@ class SearchesTest < ApplicationSystemTestCase
   test 'the hidden menu should allow us to go into the searches#new url' do
     find('#toggle-hidden-global-menu').click
 
-    assert_text I18n.t('searches.title')
-
-    click_on I18n.t('searches.object')
+    find('#new-search').click
 
     assert find('#search_body')
     assert_equal page.current_path, new_search_path

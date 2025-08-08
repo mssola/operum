@@ -43,25 +43,26 @@
 
         <div id="hidden-nav" class="hidden">
           <div class="flex-wrap">
-            <span><%= I18n.t('general.create').capitalize %>: </span>
-            <%= link_to I18n.t('searches.object'), new_search_path %>
-            <%= link_to I18n.t('things.object'), new_thing_path %>
+            <span><%= I18n.t('things.object').capitalize %>: </span>
+            <%= link_to I18n.t('tags.new-action'), new_thing_path, id: 'new-thing' %>
           </div>
 
           <div class="flex-wrap">
             <span><%= I18n.t('searches.title') %>: </span>
+            <%= link_to I18n.t('tags.new-action'), new_search_path, id: 'new-search' %>
             <% if @search&.id %>
               <%= link_to I18n.t('general.edit'), edit_search_path(@search) %>
               <%= link_to I18n.t('general.delete'), search_path(@search), data: { turbo_confirm: I18n.t('general.sure'), turbo_method: :delete } %>
             <% end %>
 
             <%= link_to I18n.t('searches.export.action'), new_search_exports_path(current_user.last_search_id ? current_user.last_search_id : '0') %>
+            <%= link_to I18n.t('searches.shared.title').downcase, shared_searches_path %>
           </div>
 
           <div class="flex-wrap">
-            <span><%= I18n.t('general.list').capitalize %>: </span>
-            <%= link_to I18n.t('tags.title').downcase, tags_path %>
-            <%= link_to I18n.t('searches.shared.title').downcase, shared_searches_path %>
+            <span><%= I18n.t('tags.title-singular').capitalize %>: </span>
+            <%= link_to I18n.t('tags.new-action').downcase, new_tag_path %>
+            <%= link_to I18n.t('general.list').downcase, tags_path %>
           </div>
         </div>
       </header>

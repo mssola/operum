@@ -110,6 +110,7 @@ en:
 
   tags:
     title: Tags
+    title-singular: Etiqueta
     new: New tag
     update: Rename tag
     new-action: new
